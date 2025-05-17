@@ -1,0 +1,443 @@
+{
+  "8": {
+    "inputs": {
+      "samples": [
+        "37",
+        0
+      ],
+      "vae": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "9": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "49",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "11": {
+    "inputs": {
+      "image": "16f4404c-b05f-4d2e-bf71-90b18d4178c6.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "28": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "29",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "29": {
+    "inputs": {
+      "clip_l": [
+        "54",
+        0
+      ],
+      "t5xxl": [
+        "54",
+        0
+      ],
+      "guidance": 1,
+      "clip": [
+        "62",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP文本编码Flux"
+    }
+  },
+  "30": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "31": {
+    "inputs": {
+      "clip_l": "",
+      "t5xxl": "",
+      "guidance": 3.5,
+      "clip": [
+        "62",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP文本编码Flux"
+    }
+  },
+  "32": {
+    "inputs": {
+      "clip_name1": "comfyanonymous/flux_text_encoders/t5xxl_fp16.safetensors",
+      "clip_name2": "comfyanonymous/flux_text_encoders/clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "33": {
+    "inputs": {
+      "unet_name": "flux1-dev.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "36": {
+    "inputs": {
+      "vae_name": "ae_flux.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "37": {
+    "inputs": {
+      "add_noise": true,
+      "noise_seed": 251241599243865,
+      "cfg": 1,
+      "model": [
+        "62",
+        0
+      ],
+      "positive": [
+        "63",
+        0
+      ],
+      "negative": [
+        "63",
+        1
+      ],
+      "sampler": [
+        "38",
+        0
+      ],
+      "sigmas": [
+        "39",
+        0
+      ],
+      "latent_image": [
+        "63",
+        2
+      ]
+    },
+    "class_type": "SamplerCustom",
+    "_meta": {
+      "title": "自定义采样器"
+    }
+  },
+  "38": {
+    "inputs": {
+      "sampler_name": "dpmpp_2m"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "K采样器选择"
+    }
+  },
+  "39": {
+    "inputs": {
+      "scheduler": "sgm_uniform",
+      "steps": 15,
+      "denoise": 1,
+      "model": [
+        "62",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "基本调度器"
+    }
+  },
+  "47": {
+    "inputs": {
+      "invert_mask": false,
+      "grow": 8,
+      "blur": 2,
+      "mask": [
+        "53",
+        0
+      ]
+    },
+    "class_type": "LayerMask: MaskGrow",
+    "_meta": {
+      "title": "LayerMask: MaskGrow"
+    }
+  },
+  "48": {
+    "inputs": {
+      "downscale_algorithm": "bilinear",
+      "upscale_algorithm": "bicubic",
+      "preresize": false,
+      "preresize_mode": "ensure minimum resolution",
+      "preresize_min_width": 1024,
+      "preresize_min_height": 1024,
+      "preresize_max_width": 16384,
+      "preresize_max_height": 16384,
+      "mask_fill_holes": true,
+      "mask_expand_pixels": 0,
+      "mask_invert": false,
+      "mask_blend_pixels": 32,
+      "mask_hipass_filter": 0.1,
+      "extend_for_outpainting": false,
+      "extend_up_factor": 1,
+      "extend_down_factor": 1,
+      "extend_left_factor": 1,
+      "extend_right_factor": 1,
+      "context_from_mask_extend_factor": 1.2,
+      "output_resize_to_target_size": true,
+      "output_target_width": 1024,
+      "output_target_height": 1024,
+      "output_padding": "32",
+      "image": [
+        "50",
+        0
+      ],
+      "mask": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "InpaintCropImproved",
+    "_meta": {
+      "title": "✂️ Inpaint Crop (Improved)"
+    }
+  },
+  "49": {
+    "inputs": {
+      "stitcher": [
+        "48",
+        0
+      ],
+      "inpainted_image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "InpaintStitchImproved",
+    "_meta": {
+      "title": "✂️ Inpaint Stitch (Improved)"
+    }
+  },
+  "50": {
+    "inputs": {
+      "side_length": 1024,
+      "side": "Shortest",
+      "upscale_method": "bicubic",
+      "crop": "disabled",
+      "image": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "DF_Image_scale_to_side",
+    "_meta": {
+      "title": "Image scale to side"
+    }
+  },
+  "51": {
+    "inputs": {
+      "mask": [
+        "11",
+        1
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "遮罩转换为图像"
+    }
+  },
+  "52": {
+    "inputs": {
+      "side_length": 1024,
+      "side": "Shortest",
+      "upscale_method": "bicubic",
+      "crop": "disabled",
+      "image": [
+        "51",
+        0
+      ]
+    },
+    "class_type": "DF_Image_scale_to_side",
+    "_meta": {
+      "title": "Image scale to side"
+    }
+  },
+  "53": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "52",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "图像转换为遮罩"
+    }
+  },
+  "54": {
+    "inputs": {
+      "prompt": "red clothes"
+    },
+    "class_type": "ShitEdit_PromptRefiner",
+    "_meta": {
+      "title": "Prompt Refiner"
+    }
+  },
+  "55": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "59": {
+    "inputs": {
+      "strength": 1,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "28",
+        0
+      ],
+      "negative": [
+        "30",
+        0
+      ],
+      "control_net": [
+        "60",
+        0
+      ],
+      "vae": [
+        "36",
+        0
+      ],
+      "image": [
+        "48",
+        1
+      ],
+      "mask": [
+        "48",
+        2
+      ]
+    },
+    "class_type": "ControlNetInpaintingAliMamaApply",
+    "_meta": {
+      "title": "应用ControlNet（阿里妈妈局部重绘）"
+    }
+  },
+  "60": {
+    "inputs": {
+      "control_net_name": "alimama-creative/FLUX.1-dev-Controlnet-Inpainting-Beta/diffusion_pytorch_model.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "加载ControlNet模型"
+    }
+  },
+  "62": {
+    "inputs": {
+      "lora_name": "black-forest-labs/FLUX.1-Canny-dev-lora/flux1-canny-dev-lora.safetensors",
+      "strength_model": 1.0000000000000002,
+      "strength_clip": 1,
+      "model": [
+        "33",
+        0
+      ],
+      "clip": [
+        "32",
+        0
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "加载LoRA"
+    }
+  },
+  "63": {
+    "inputs": {
+      "positive": [
+        "59",
+        0
+      ],
+      "negative": [
+        "59",
+        1
+      ],
+      "vae": [
+        "36",
+        0
+      ],
+      "pixels": [
+        "69",
+        0
+      ]
+    },
+    "class_type": "InstructPixToPixConditioning",
+    "_meta": {
+      "title": "InstructPixToPix条件"
+    }
+  },
+  "69": {
+    "inputs": {
+      "low_threshold": 50,
+      "high_threshold": 170,
+      "resolution": 1024,
+      "image": [
+        "48",
+        1
+      ]
+    },
+    "class_type": "CannyEdgePreprocessor",
+    "_meta": {
+      "title": "Canny Edge"
+    }
+  }
+}

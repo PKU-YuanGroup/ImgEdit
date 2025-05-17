@@ -1,0 +1,302 @@
+{
+  "1": {
+    "inputs": {
+      "unet_name": "flux1-dev.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "3": {
+    "inputs": {
+      "clip_name1": "comfyanonymous/flux_text_encoders/t5xxl_fp16.safetensors",
+      "clip_name2": "comfyanonymous/flux_text_encoders/clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "13": {
+    "inputs": {
+      "image": "000209901.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "14": {
+    "inputs": {
+      "side_length": 1024,
+      "side": "Shortest",
+      "upscale_method": "lanczos",
+      "crop": "disabled",
+      "image": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "DF_Image_scale_to_side",
+    "_meta": {
+      "title": "Image scale to side"
+    }
+  },
+  "29": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "43",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "32": {
+    "inputs": {
+      "guidance": 30,
+      "conditioning": [
+        "35",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "35": {
+    "inputs": {
+      "text": "Victorian‑era portrait with muted tones and lace. This image depicts a scene with two men engaged in a conversation at a bar. The man on the left is wearing a black leather jacket and holding a glass, possibly containing a drink. He appears to be listening intently to the other man, who is standing and wearing a striped jacket. The setting suggests a dimly lit, rustic environment, possibly a pub or a similar establishment. The interaction seems serious or intense, as both individuals are focused on each other, indicating a potentially significant discussion.",
+      "clip": [
+        "46",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "37": {
+    "inputs": {
+      "model": [
+        "46",
+        0
+      ],
+      "conditioning": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "基本引导器"
+    }
+  },
+  "38": {
+    "inputs": {
+      "noise": [
+        "40",
+        0
+      ],
+      "guider": [
+        "37",
+        0
+      ],
+      "sampler": [
+        "41",
+        0
+      ],
+      "sigmas": [
+        "39",
+        0
+      ],
+      "latent_image": [
+        "56",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "自定义采样器（高级）"
+    }
+  },
+  "39": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 15,
+      "denoise": 1,
+      "model": [
+        "46",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "基本调度器"
+    }
+  },
+  "40": {
+    "inputs": {
+      "noise_seed": 990723150904351
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "随机噪波"
+    }
+  },
+  "41": {
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "K采样器选择"
+    }
+  },
+  "43": {
+    "inputs": {
+      "samples": [
+        "38",
+        0
+      ],
+      "vae": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "44": {
+    "inputs": {
+      "vae_name": "ae_flux.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "46": {
+    "inputs": {
+      "lora_name": "black-forest-labs/FLUX.1-Canny-dev-lora/flux1-canny-dev-lora.safetensors",
+      "strength_model": 0.7800000000000002,
+      "strength_clip": 1.0000000000000002,
+      "model": [
+        "1",
+        0
+      ],
+      "clip": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "加载LoRA"
+    }
+  },
+  "47": {
+    "inputs": {
+      "positive": [
+        "32",
+        0
+      ],
+      "negative": [
+        "32",
+        0
+      ],
+      "vae": [
+        "44",
+        0
+      ],
+      "pixels": [
+        "64",
+        0
+      ]
+    },
+    "class_type": "InstructPixToPixConditioning",
+    "_meta": {
+      "title": "InstructPixToPix条件"
+    }
+  },
+  "53": {
+    "inputs": {
+      "image": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "DF_Get_image_size",
+    "_meta": {
+      "title": "Get image size"
+    }
+  },
+  "56": {
+    "inputs": {
+      "width": [
+        "53",
+        0
+      ],
+      "height": [
+        "53",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyFluxLatentImage",
+    "_meta": {
+      "title": "EmptyFluxLatentImage"
+    }
+  },
+  "60": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "63": {
+    "inputs": {
+      "images": [
+        "64",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "64": {
+    "inputs": {
+      "low_threshold": 60,
+      "high_threshold": 220,
+      "resolution": 1024,
+      "image": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "CannyEdgePreprocessor",
+    "_meta": {
+      "title": "Canny Edge"
+    }
+  }
+}

@@ -1,0 +1,537 @@
+{
+  "9": {
+    "inputs": {
+      "unet_name": "flux1-dev.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "10": {
+    "inputs": {
+      "add_noise": true,
+      "noise_seed": 966797208878258,
+      "cfg": 0.99,
+      "model": [
+        "9",
+        0
+      ],
+      "positive": [
+        "22",
+        0
+      ],
+      "negative": [
+        "11",
+        0
+      ],
+      "sampler": [
+        "18",
+        0
+      ],
+      "sigmas": [
+        "16",
+        0
+      ],
+      "latent_image": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "SamplerCustom",
+    "_meta": {
+      "title": "自定义采样器"
+    }
+  },
+  "11": {
+    "inputs": {
+      "text": "blur, bad quality, jpeg, low quality.",
+      "clip": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "14": {
+    "inputs": {
+      "clip_name1": "comfyanonymous/flux_text_encoders/t5xxl_fp16.safetensors",
+      "clip_name2": "comfyanonymous/flux_text_encoders/clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "15": {
+    "inputs": {
+      "text": "a wooden cup. pure background. high quality, very detailed. 8k.",
+      "clip": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "16": {
+    "inputs": {
+      "scheduler": "sgm_uniform",
+      "steps": 10,
+      "denoise": 1,
+      "model": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "基本调度器"
+    }
+  },
+  "17": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyFluxLatentImage",
+    "_meta": {
+      "title": "EmptyFluxLatentImage"
+    }
+  },
+  "18": {
+    "inputs": {
+      "sampler_name": "dpmpp_2m"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "K采样器选择"
+    }
+  },
+  "19": {
+    "inputs": {
+      "samples": [
+        "10",
+        0
+      ],
+      "vae": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "20": {
+    "inputs": {
+      "vae_name": "ae_flux.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "22": {
+    "inputs": {
+      "guidance": 2.5,
+      "conditioning": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "26": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": true,
+      "image1": [
+        "58",
+        0
+      ],
+      "image2": [
+        "56",
+        0
+      ]
+    },
+    "class_type": "ImageConcanate",
+    "_meta": {
+      "title": "Image Concatenate"
+    }
+  },
+  "30": {
+    "inputs": {
+      "width": 768,
+      "height": 768,
+      "batch_size": 1,
+      "color": 0
+    },
+    "class_type": "EmptyImage",
+    "_meta": {
+      "title": "空图像"
+    }
+  },
+  "32": {
+    "inputs": {
+      "mask": [
+        "60",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "遮罩转换为图像"
+    }
+  },
+  "33": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": true,
+      "image1": [
+        "30",
+        0
+      ],
+      "image2": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "ImageConcanate",
+    "_meta": {
+      "title": "Image Concatenate"
+    }
+  },
+  "35": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "33",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "图像转换为遮罩"
+    }
+  },
+  "37": {
+    "inputs": {
+      "text": "",
+      "clip": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "39": {
+    "inputs": {
+      "text": "",
+      "clip": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "40": {
+    "inputs": {
+      "guidance": 40,
+      "conditioning": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "41": {
+    "inputs": {
+      "sampler_name": "dpmpp_2m"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "K采样器选择"
+    }
+  },
+  "42": {
+    "inputs": {
+      "add_noise": true,
+      "noise_seed": 628740194050866,
+      "cfg": 1,
+      "model": [
+        "52",
+        0
+      ],
+      "positive": [
+        "53",
+        0
+      ],
+      "negative": [
+        "53",
+        1
+      ],
+      "sampler": [
+        "41",
+        0
+      ],
+      "sigmas": [
+        "43",
+        0
+      ],
+      "latent_image": [
+        "53",
+        2
+      ]
+    },
+    "class_type": "SamplerCustom",
+    "_meta": {
+      "title": "自定义采样器"
+    }
+  },
+  "43": {
+    "inputs": {
+      "scheduler": "sgm_uniform",
+      "steps": 15,
+      "denoise": 1,
+      "model": [
+        "52",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "基本调度器"
+    }
+  },
+  "44": {
+    "inputs": {
+      "samples": [
+        "42",
+        0
+      ],
+      "vae": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "48": {
+    "inputs": {
+      "strength": 1,
+      "strength_type": "multiply",
+      "conditioning": [
+        "40",
+        0
+      ],
+      "style_model": [
+        "49",
+        0
+      ],
+      "clip_vision_output": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "StyleModelApply",
+    "_meta": {
+      "title": "应用风格模型"
+    }
+  },
+  "49": {
+    "inputs": {
+      "style_model_name": "flux1-redux-dev.safetensors"
+    },
+    "class_type": "StyleModelLoader",
+    "_meta": {
+      "title": "加载风格模型"
+    }
+  },
+  "50": {
+    "inputs": {
+      "crop": "center",
+      "clip_vision": [
+        "51",
+        0
+      ],
+      "image": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "CLIPVisionEncode",
+    "_meta": {
+      "title": "CLIP视觉编码"
+    }
+  },
+  "51": {
+    "inputs": {
+      "clip_name": "Comfy-Org/sigclip_vision_384/sigclip_vision_patch14_384.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "加载CLIP视觉"
+    }
+  },
+  "52": {
+    "inputs": {
+      "unet_name": "flux1-fill-dev.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "53": {
+    "inputs": {
+      "noise_mask": false,
+      "positive": [
+        "48",
+        0
+      ],
+      "negative": [
+        "39",
+        0
+      ],
+      "vae": [
+        "20",
+        0
+      ],
+      "pixels": [
+        "26",
+        0
+      ],
+      "mask": [
+        "35",
+        0
+      ]
+    },
+    "class_type": "InpaintModelConditioning",
+    "_meta": {
+      "title": "内补模型条件"
+    }
+  },
+  "54": {
+    "inputs": {
+      "images": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "56": {
+    "inputs": {
+      "side_length": 768,
+      "side": "Shortest",
+      "upscale_method": "bicubic",
+      "crop": "disabled",
+      "image": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "DF_Image_scale_to_side",
+    "_meta": {
+      "title": "Image scale to side"
+    }
+  },
+  "57": {
+    "inputs": {
+      "side_length": 768,
+      "side": "Shortest",
+      "upscale_method": "bicubic",
+      "crop": "disabled",
+      "image": [
+        "32",
+        0
+      ]
+    },
+    "class_type": "DF_Image_scale_to_side",
+    "_meta": {
+      "title": "Image scale to side"
+    }
+  },
+  "58": {
+    "inputs": {
+      "side_length": 768,
+      "side": "Shortest",
+      "upscale_method": "bicubic",
+      "crop": "disabled",
+      "image": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "DF_Image_scale_to_side",
+    "_meta": {
+      "title": "Image scale to side"
+    }
+  },
+  "59": {
+    "inputs": {
+      "image": "clipspace/clipspace-mask-2052635.599999994.png [input]"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "60": {
+    "inputs": {
+      "expand": 48,
+      "tapered_corners": true,
+      "mask": [
+        "59",
+        1
+      ]
+    },
+    "class_type": "GrowMask",
+    "_meta": {
+      "title": "扩展遮罩"
+    }
+  },
+  "61": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  }
+}
