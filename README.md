@@ -42,10 +42,10 @@ We evaluate both open-source and proprietary models, as well as ImgEdit-E1.
 
 # 💡 ImgEdit Dataset
 ## 📣 Overview
-**Data statistic**
+### Data statistic
 ![image](assets/pie.png)
 
-**Single Turn tasks and Multi-Turn tasks**
+### Single Turn tasks and Multi-Turn tasks
 We comprehensively categorize single-turn image editing tasks into 10 tasks and multi-turn image editing tasks into 3 tasks. 
 ![image](assets/edit-type.jpg)
 
@@ -58,7 +58,7 @@ We provide some cases from our dataset.
 # 🖥️  ImgEdit Pipeline 
 ![image](assets/datapipeline.png)
 1. Data Preparation & Filter (using Laion-aes dataset, only retain samples with aesthetic score greater than 4.75, then use Qwen2.5VL-7B to generate dense caption and use GPT-4o to generate short caption.)
-2. Generate bounding box and segamentation mask (using [Yolo-world](https://github.com/AILab-CVC/YOLO-World) and [SAM2](https://github.com/facebookresearch/sam2))
+2. Generate bounding box and segamentation mask (using [Yolo-world](https://github.com/AILab-CVC/YOLO-World) and [SAM2](https://github.com/facebookresearch/sam2)) and filter with CLIP.
 3. Generate diverse edit prompts using GPT-4o
 4. Task-based editing pipelines using ComfyUI
 5. Data Quality Filter using GPT-4o
@@ -229,7 +229,7 @@ See [Multiturn_bench](Benchmark/Multiturn/Multiturn_readme.md) for details.
 
 # 👍 Acknowledgement
 
-This project wouldn't be possible without the following open-sourced repositories: [Open-Sora Plan](https://github.com/PKU-YuanGroup/Open-Sora-Plan), [Grounded-SAM-2](https://github.com/IDEA-Research/Grounded-SAM-2), [improved-aesthetic-predictor](https://github.com/christophschuhmann/improved-aesthetic-predictor), [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL), [YOLO-World](https://github.com/AILab-CVC/YOLO-World), [Laion-dataset](https://github.com/LAION-AI/laion-datasets).
+This project wouldn't be possible without the following open-sourced repositories: [Open-Sora Plan](https://github.com/PKU-YuanGroup/Open-Sora-Plan), [Grounded-SAM-2](https://github.com/IDEA-Research/Grounded-SAM-2), [improved-aesthetic-predictor](https://github.com/christophschuhmann/improved-aesthetic-predictor), [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL), [YOLO-World](https://github.com/AILab-CVC/YOLO-World), [Laion-dataset](https://github.com/LAION-AI/laion-datasets), [ComfyUI](https://github.com/comfyanonymous/ComfyUI), [Stable Diffusion](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0), and [Flux](https://github.com/black-forest-labs/flux).
 
 # 📜 Citation
 If you find this work useful for your research, please cite our paper and star our git repo:
