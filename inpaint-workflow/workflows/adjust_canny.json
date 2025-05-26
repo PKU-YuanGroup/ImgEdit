@@ -320,7 +320,7 @@
     "inputs": {
       "prompt": "red clothes"
     },
-    "class_type": "ShitEdit_PromptRefiner",
+    "class_type": "ImgEdit_PromptRefiner",
     "_meta": {
       "title": "Prompt Refiner"
     }

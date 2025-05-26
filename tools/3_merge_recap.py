@@ -31,7 +31,7 @@ def extract_metadata_from_json(input_folder, output_file):
         # 合并所有结果
         for result in results:
             if isinstance(result, list):
-                print("shit")
+                print("no")
                 data_list.extend(result)  # 合并列表
             elif isinstance(result, dict):
                 data_list.append(result) 

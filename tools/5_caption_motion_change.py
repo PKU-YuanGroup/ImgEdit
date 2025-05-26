@@ -41,15 +41,14 @@ def image_to_base64(image_path):
 def call_gpt(original_image_path, result_image_path, edit_prompt_json):
     try:
         # Convert images to Base64 encoding
-        import pdb; pdb.set_trace()
         original_image_base64 = image_to_base64(original_image_path)
         result_image_base64 = image_to_base64(result_image_path)
         print(original_image_base64)
         if not original_image_base64 or not result_image_base64:
             return {"error": "Image conversion failed"}
 
-        response = aoiclient.chat.completions.create(
-            model='gpt-4o_2024-11-20',#'gpt-4.1_2025-04-14',
+        response = client.chat.completions.create(
+            model=gpt4o,
             messages=[{
                 "role": "user",
                 "content": [
@@ -57,14 +56,6 @@ def call_gpt(original_image_path, result_image_path, edit_prompt_json):
                         "type": "text",
                         "text": prompt
                     },
-                    # {
-                    #     "type": "image_url",
-                    #     "image_url": {"url": f"data:image/jpg;base64,{original_image_base64}"},
-                    # },
-                    # {
-                    #     "type": "image_url",
-                    #     "image_url": {"url": f"data:image/jpg;base64,{result_image_base64}"},
-                    # }
                 ]
             }],
             max_tokens=1024,

@@ -48,7 +48,7 @@ def call_gpt(original_image_path, result_image_path, edit_prompt):
             return {"error": "Image conversion failed"}
 
         client = OpenAI(
-            api_key="sk-rqUkz5hqK2aIlNTFDe0a039e170f4670816bCc7b8324017c",
+            api_key="your api-key",
             base_url="https://api.bltcy.cn/v1"
         )
 
@@ -112,7 +112,7 @@ def process_json(edit_json, result_img_folder, origin_img_root, num_threads):
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate image edits using GPT")
-    parser.add_argument('--result_img_folder', type=str, required=True, help="Folder with subfolders of edited images")
+    parser.add_argument('--result_img_folder', type=str, required=True, help="Folder of edited images")
     parser.add_argument('--edit_json', type=str, required=True, help="Path to JSON file mapping keys to metadata")
     parser.add_argument('--origin_img_root', type=str, required=True, help="Root path where original images are stored")
     parser.add_argument('--num_processes', type=int, default=32, help="Number of parallel threads")

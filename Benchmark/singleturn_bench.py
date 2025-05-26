@@ -4,11 +4,16 @@ import json
 import argparse
 from openai import OpenAI
 from tqdm import tqdm
-from tenacity import retry, wait_exponential, stop_after_attempt
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+
+client = OpenAI(
+            api_key="your api-key",
+            base_url="your base-url"
+        )
+
 # 通用评分模板前缀
-prompts_json = "/mnt/workspace/hxy/edit_pipeline/bench/judge_prompt.json"
+prompts_json = "../judge_prompt.json"
 with open(prompts_json, 'r') as f:
     prompts = json.load(f)
 
@@ -28,11 +33,6 @@ def call_gpt(original_image_path, result_image_path, edit_prompt, edit_type):
 
         if not original_image_base64 or not result_image_base64:
             return {"error": "Image conversion failed"}
-
-        client = OpenAI(
-            api_key="sk-rqUkz5hqK2aIlNTFDe0a039e170f4670816bCc7b8324017c",
-            base_url="https://api.bltcy.cn/v1"
-        )
 
         prompt = prompts[edit_type]
         full_prompt = prompt.replace('<edit_prompt>', edit_prompt)

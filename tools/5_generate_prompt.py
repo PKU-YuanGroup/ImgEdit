@@ -4,34 +4,34 @@ import os
 import re
 from tqdm import tqdm
 import argparse
-# from torch.utils.data import Dataset, DataLoader
 from openai import AzureOpenAI 
-from azure.identity import AzureCliCredential, ChainedTokenCredential, DefaultAzureCredential, get_bearer_token_provider
 from tenacity import retry, stop_after_attempt, wait_exponential
 import logging
+from openai import OpenAI
 from termcolor import colored
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import math
 
 edit_type = [
-    # "add", 
-    # "remove",
-    # "replace",
-    #  "adjust",
-    # "background",
-    "version_refer",
-    # "extract",
-    # "compose",
-#    'multi-premise',
-    # 'omit-refer',
-    # "", prop, add/replace+adjust+adjust/remove,
-    # "", prompt ahead , add, ajust, replace,
-    # "", version backtrack , 
-
+    "add", 
+    "remove",
+    "replace",
+    "adjust",
+    "background",
+    "extract", # the same with visual edit
+    "hybrid",
+    "content_memory",
+    "content_understand",
+    "version_backtrack",
 ]
 
-version_refer_prompt = (
+client = OpenAI(
+            api_key="your api-key",
+            base_url=""
+        )
+
+version_backtrack_prompt = (
 "Act as a data annotator who creates multi-turn image-editing prompts from a given scene, three instructions, and one object. Instruction keywords: add - insert the specified object as if it is not yet present, replace - swap the specified object with another one, adjust - modify the object's attributes (color, material, texture, appearance). Prompt should blend naturally into the scene. Workflow: You need to generate three round prompts based on the given instructions and the specific object, The first round is always 'add',  discribe more detail and provide an approximate description of the object's position and size according to its bounding box coordinates and image resolution. Do not use additional sentences to describe the position!!!. The second prompt is 'replace'. In the third round, your prompt should reject the edits from the previous round and, based on the first round, generate a new “adjust” prompt. For example: "
 "sence: 'An open laptop on a glass desk beside a notebook and a pen.', resolution: 2560x1600, object: 'laptop', bbox: [500,400,2000,1200], instructions: 'add', 'replace', 'adjust'."
 " Output: round1: add a laptop in the central area, round2: replace the laptop with a book, result2: a book, round3: i don't like your edit, adjust the laptop in first round into black color, result3: a black laptop. "
@@ -41,7 +41,7 @@ version_refer_prompt = (
 " Output: "
 )
 
-omit_refer_prompt = (
+content_understand_prompt = (
 "Act as a data annotator who creates multi-turn image-editing prompts from a given scene, three instructions, and one object. Instruction keywords: remove - delete the object, add - insert the specified object as if it is not yet present, replace - swap the specified object with another one, adjust - modify the object's attributes (color, material, texture, appearance). Prompt should blend naturally into the scene. Workflow: You need to generate three round prompts based on the given instructions and the specific object, The first round is always 'add',  discribe more detail and provide an approximate description of the object's position and size according to its bounding box coordinates and image resolution. Do not use additional sentences to describe the position!!!. In following prompt, you should use pronoun to describe the objects and make prompts concise! "
 "sence: 'Ceramic mug placed on wooden plate with decorative items against light wall.', resolution: 1440x1920, object: 'ceramic mug', bbox: [931,339,1500,1220], instructions: 'add', 'ajust', 'replace'."
 " Output: round1: add a ceramic mug in the central area of the image, round2: adjust it into glass material, result2: a glass mug, round3: replace it with a glass bottle, result3: a glass bottle. "
@@ -51,7 +51,7 @@ omit_refer_prompt = (
 " Output: "
 )
 
-multi_premise_prompt = (
+content_memory_prompt = (
 "Act as a data annotator who creates multi-turn image-editing prompts from a given scene, three instructions, and some objects. Instruction keywords: replace - swap the specified object with another one, adjust - modify the object's attributes (color, material, texture, appearance). Prompt should blend naturally into the scene. Workflow: First, output a single overarching premise about object attributes that should follow in all prompts. Next, produce two consecutive instructions that follow the instructions. These instructions must not contain the overarching premise!!! The edit results you provide must contain the premise and only describe the object you edit with concise words. "
 "sence: 'Ceramic mug placed on wooden plate with decorative items against light wall.', object1: 'ceramic mug', instruction1: 'replace', object2: 'wooden plate', instruction2: 'replace'"
 " Output: premise: All subsequent edits must use glass as the material, round1: replace ceramic mug with a bottle, result1: a glass bottle, round2: replace the wooden plate with a tray, result2: a glass tray. "
@@ -110,7 +110,7 @@ remove_prompt = (
 " Prompt: "
 )
 
-compose_prompt = (
+hybrid_prompt = (
 "Act as a data annotator who creates image-editing prompts from a given scene, two instructions, and two objects. Instruction keywords: replace - swap the specified object with another one, remove - delete the object, add - insert the specified object as if it is not yet present, adjust - modify the object's attributes (color, material, texture, appearance). For add or remove, only describe the action; for adjust or replace, write a prompt that blends naturally into the scene. Embed an approximate description of each object's location and size using its bounding box [x_min, y_min, x_max, y_max] and the image resolution, without extra sentences about position. The output must follow the exact example format, and the 'result' field must be either a noun (optionally with adjectives) or “None” for add or remove. "
 "sence: 'Ceramic mug placed on wooden plate with decorative items against light wall.', resolution: 1672x2140, object1: 'ceramic mug', bbox1: [197,208,1707,1417], instruction1: 'replace', object2: 'wooden plate', bbox2: [122, 1427, 1783, 1669], instruction2: 'remove'"
 " Output: prompt: replace ceramic mug positioned in the central area of the image with a glass bottle and remove the wooden plate underneath, result1: a glass bottle, result2: None. "
@@ -119,11 +119,7 @@ compose_prompt = (
 "{{{}}}"
 " Output: "
 )
-# summary: 'An open laptop on a glass desk beside a notebook and a pen.' object: 'laptop', resolution: 2560x1600, bbox: [500,400,2000,1200] Output: prompt: replace laptop occupying the central area of the image with a tablet, result: a tablet.
-# summary: 'A single white pillow resting on a gray couch against a bright wall.' object: 'white pillow', resolution: 1280x720, bbox: [400,300,900,700] Output: prompt: replace white pillow placed on the center-right of the image with a knitted cushion, result: a knitted cushion.
-    # desp = f"caption: {caption} resolution: {resolution_str}, object1: '{object1}',  object1 bbox: {bbox_str1}, instruction1: {instruct[0]}, object2: '{object2}',  object2 bbox: {bbox_str2}, instruction2: {instruct[1]}."  
 
-shit = []
 
 clever_model_name='gpt-4o_2024-11-20'
 
@@ -131,8 +127,8 @@ clever_model_name='gpt-4o_2024-11-20'
 def call_gpt(
     prompt, model_name=None, api_key=None, base_url=None
 ):
-    chat_completion = aoiclient.chat.completions.create(
-        model=model_name,
+    chat_completion = client.chat.completions.create(
+        model="gpt-4o",
         messages=[
             {
                 "role": "user",
@@ -189,10 +185,10 @@ def parse_args():
 
 # replace_adjust_pattern = r"^prompt:\s*'(.*?)',?\s*result:\s*'(.*?)'\s*$"
 replace_adjust_pattern = r"^prompt:\s*(.*?),?\s*result:\s*(.*?)\s*$"  
-compose_pattern = r"^prompt:\s*(.*?),?\s*result1:\s*(.*?),?\s*result2:\s*(.*?)\s*$"  
+hybrid_pattern = r"^prompt:\s*(.*?),?\s*result1:\s*(.*?),?\s*result2:\s*(.*?)\s*$"  
 add_remove_pattern = r"'(.*?)'|(.+)"
-multi_premise_pattern = r"^premise:\s*(.*?),?\s*round1:\s*(.*?),?\s*result1:\s*(.*?),?\s*round2:\s*(.*?),?\s*result2:\s*(.*?)\s*$" 
-omit_refer_pattern = r"^round1:\s*(.*?),?\s*round2:\s*(.*?),?\s*result2:\s*(.*?),?\s*round3:\s*(.*?),?\s*result3:\s*(.*?)\s*$" 
+content_memory_pattern = r"^premise:\s*(.*?),?\s*round1:\s*(.*?),?\s*result1:\s*(.*?),?\s*round2:\s*(.*?),?\s*result2:\s*(.*?)\s*$" 
+content_understand_pattern = r"^round1:\s*(.*?),?\s*round2:\s*(.*?),?\s*result2:\s*(.*?),?\s*round3:\s*(.*?),?\s*result3:\s*(.*?)\s*$" 
 def valid_obj_candidate(obbox, area, score, clip_score, a_threshold, s_threshold, c_threshold):
     if isinstance(score, list):
         if len(score) > 1 or len(score) == 0:
@@ -248,7 +244,7 @@ def make_bg_description(summary, background, object, count=5):
     )  
     return description 
 
-def make_omit_refer_description(caption, object, bbox, resolution, instruction):  
+def make_content_understand_description(caption, object, bbox, resolution, instruction):  
     # 格式化 resolution 信息  
     resolution_str = f"{resolution['height']}x{resolution['width']}"  
     # 格式化 bbox 信息，四舍五入为整数  
@@ -257,7 +253,7 @@ def make_omit_refer_description(caption, object, bbox, resolution, instruction):
     desp = f"caption: {caption}, resolution: {resolution_str}, object: '{object}', object bbox: {bbox_str}, instructions: {instruction}"  
     return desp  
 
-def make_version_refer_description(caption, object, bbox, resolution, instruction):  
+def make_version_backtrack_description(caption, object, bbox, resolution, instruction):  
     # 格式化 resolution 信息  
     resolution_str = f"{resolution['height']}x{resolution['width']}"  
     # 格式化 bbox 信息，四舍五入为整数  
@@ -286,7 +282,7 @@ def make_remove_description(caption, object, bbox, resolution):
     return desp
 
 
-def make_compose_description(caption, object1, object2, bbox1, bbox2, instruct, resolution):  
+def make_hybrid_description(caption, object1, object2, bbox1, bbox2, instruct, resolution):  
     # 格式化 resolution 信息  
     resolution_str = f"{resolution['height']}x{resolution['width']}"  
     # 格式化 bbox 信息，四舍五入为整数  
@@ -297,7 +293,7 @@ def make_compose_description(caption, object1, object2, bbox1, bbox2, instruct, 
     desp = f"sence: {caption}, resolution: {resolution_str}, object1: '{object1}', bbox1: {bbox_str1}, instruction1: '{instruct[0]}', object2: '{object2}', bbox2: {bbox_str2}, instruction2: '{instruct[1]}'."  
     return desp 
  
-def make_multi_premise_description(caption, object1, object2, instruct):  
+def make_content_memory_description(caption, object1, object2, instruct):  
     # 构建描述字符串  
     desp = f"sence: {caption}, object1: '{object1}', instruction1: '{instruct[0]}', object2: '{object2}', instruction2: '{instruct[1]}'."  
     return desp 
@@ -369,7 +365,7 @@ def caption(batch):
             if len(candidate) == 0:
                 logging.warning(f"No candidate object for editing")
                 break
-            if instruction_type == 'compose':
+            if instruction_type == 'hybrid':
                 # import pdb; pdb.set_trace()
                 if len(candidate) <= 1:
                     logging.warning(f"No candidate object for editing")
@@ -381,36 +377,36 @@ def caption(batch):
                     break
                 # edit_obj = batch['segmentation']['object'][random.sample(candidate, 2)]
                 instructions = random.sample(["add", "remove", "replace", "adjust"], 2)
-                desp = make_compose_description(batch['tags']["summary"], edit_obj[0]['class_name'], edit_obj[1]['class_name'], edit_obj[0]['bbox'], edit_obj[1]['bbox'], instructions, batch['resolution'])
-                input_prompt = compose_prompt.replace("{{{}}}", desp).replace("\t", "").strip()
+                desp = make_hybrid_description(batch['tags']["summary"], edit_obj[0]['class_name'], edit_obj[1]['class_name'], edit_obj[0]['bbox'], edit_obj[1]['bbox'], instructions, batch['resolution'])
+                input_prompt = hybrid_prompt.replace("{{{}}}", desp).replace("\t", "").strip()
                 model_name = clever_model_name
 
-            if instruction_type == 'multi-premise':
+            if instruction_type == 'content_memory':
                 if len(candidate) <= 1:
                     logging.warning(f"No candidate object for editing")
                     break
                 edit_obj = [batch['segmentation']['object'][i] for i in random.sample(candidate, 2)]  
                 # edit_obj = batch['segmentation']['object'][random.sample(candidate, 2)]
                 instructions = random.choices(["replace", "adjust"], k=2)
-                desp = make_multi_premise_description(batch['tags']["summary"], edit_obj[0]['class_name'], edit_obj[1]['class_name'], instructions)
-                input_prompt = multi_premise_prompt.replace("{{{}}}", desp).replace("\t", "").strip()
+                desp = make_content_memory_description(batch['tags']["summary"], edit_obj[0]['class_name'], edit_obj[1]['class_name'], instructions)
+                input_prompt = content_memory_prompt.replace("{{{}}}", desp).replace("\t", "").strip()
                 model_name = clever_model_name
             
-            if instruction_type == 'omit-refer':
+            if instruction_type == 'content_understand':
                 edit_obj = batch['segmentation']['object'][random.choice(candidate)] 
                 # edit_obj = batch['segmentation']['object'][random.sample(candidate, 2)]
                 instructions = random.choice([  
                     ['add', 'adjust', 'remove'],  
                     ['add', 'adjust', 'replace']  
                 ])
-                desp = make_omit_refer_description(batch['cap'][0], edit_obj['class_name'], edit_obj['bbox'], batch['resolution'], instructions)
-                input_prompt = omit_refer_prompt.replace("{{{}}}", desp).replace("\t", "").strip()
+                desp = make_content_understand_description(batch['cap'][0], edit_obj['class_name'], edit_obj['bbox'], batch['resolution'], instructions)
+                input_prompt = content_understand_prompt.replace("{{{}}}", desp).replace("\t", "").strip()
                 model_name = clever_model_name
-            if instruction_type == 'version_refer':
+            if instruction_type == 'version_backtrack':
                 edit_obj = batch['segmentation']['object'][random.choice(candidate)] 
                 instructions = ['add', 'replace', 'adjust']
-                desp = make_version_refer_description(batch['cap'][0], edit_obj['class_name'], edit_obj['bbox'], batch['resolution'], instructions)
-                input_prompt = version_refer_prompt.replace("{{{}}}", desp).replace("\t", "").strip()
+                desp = make_version_backtrack_description(batch['cap'][0], edit_obj['class_name'], edit_obj['bbox'], batch['resolution'], instructions)
+                input_prompt = version_backtrack_prompt.replace("{{{}}}", desp).replace("\t", "").strip()
                 model_name = clever_model_name
 
             if instruction_type == "add":
@@ -452,9 +448,9 @@ def caption(batch):
                 except:
                     print(colored(response+"  match catch error", "red"))
                     break 
-            elif instruction_type in ["omit-refer", "version_refer"]:
+            elif instruction_type in ["content_understand", "version_backtrack"]:
                 # import pdb; pdb.set_trace()
-                pattern = omit_refer_pattern
+                pattern = content_understand_pattern
                 match = re.match(pattern, response)
                 try:
                     if match:
@@ -469,8 +465,8 @@ def caption(batch):
                 except:
                     print(colored(response+"  match catch error", "red"))
                     break 
-            elif instruction_type == "multi-premise":
-                pattern = multi_premise_pattern
+            elif instruction_type == "content_memory":
+                pattern = content_memory_pattern
                 match = re.match(pattern, response)
                 try:
                     if match:
@@ -485,8 +481,8 @@ def caption(batch):
                 except:
                     print(colored(response+"  match catch error", "red"))
                     break 
-            elif instruction_type == "compose":
-                pattern = compose_pattern
+            elif instruction_type == "hybrid":
+                pattern = hybrid_pattern
                 match = re.match(pattern, response)
                 try:
                     if match:
@@ -512,13 +508,13 @@ def caption(batch):
             data_info = {"original_path": batch['path'], "resolution": batch['resolution'], "edit_obj": edit_obj, "edit_type": instruction_type, "edit_prompt": response, "edit_result": None}
         elif instruction_type in ["adjust", "replace", "background"]:
             data_info = {"original_path": batch['path'], "resolution": batch['resolution'], "edit_obj": edit_obj, "edit_type": instruction_type, "edit_prompt": edit_prompt, "edit_result": edit_result}
-        elif instruction_type == "compose":
+        elif instruction_type == "hybrid":
             data_info = {"original_path": batch['path'], "resolution": batch['resolution'], "edit_obj1": edit_obj[0], "edit_obj2": edit_obj[1], "edit_type": instructions, "edit_prompt": edit_prompt, "edit_result1": edit_result1, "edit_result2": edit_result2}
-        elif instruction_type == "multi-premise":
+        elif instruction_type == "content_memory":
             data_info = {"original_path": batch['path'], "resolution": batch['resolution'], "edit_obj1": edit_obj[0], "edit_obj2": edit_obj[1], "edit_type": instructions, "round1_prompt": round1, "edit_result1": edit_result1, "round2_prompt": round2, "edit_result2": edit_result2, "premise": premise}
-        elif instruction_type == "omit-refer":
+        elif instruction_type == "content_understand":
             data_info = {"original_path": batch['path'], "resolution": batch['resolution'], "edit_obj": edit_obj, "edit_type": instructions, "round1_prompt": round1, "round2_prompt": round2, "edit_result2": edit_result2, "round3_prompt": round3, "edit_result3": edit_result3}
-        elif instruction_type == "version_refer":
+        elif instruction_type == "version_backtrack":
             data_info = {"original_path": batch['path'], "resolution": batch['resolution'], "edit_obj": edit_obj, "edit_type": instructions, "round1_prompt": round1, "round2_prompt": round2, "edit_result2": edit_result2, "round3_prompt": round3, "edit_result3": edit_result3}
          
         os.makedirs(output_dir, exist_ok=True)  
