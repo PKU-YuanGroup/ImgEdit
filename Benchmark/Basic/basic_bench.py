@@ -4,18 +4,12 @@ import json
 import argparse
 from openai import OpenAI
 from tqdm import tqdm
+from tenacity import retry, wait_exponential, stop_after_attempt
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-
-client = OpenAI(
-            api_key="your api-key",
-            base_url="your base-url"
-        )
-
-# 通用评分模板前缀
-prompts_json = "../judge_prompt.json"
-with open(prompts_json, 'r') as f:
-    prompts = json.load(f)
+def load_prompts(prompts_json_path):
+    with open(prompts_json_path, 'r') as f:
+        return json.load(f)
 
 def image_to_base64(image_path):
     try:
@@ -26,7 +20,7 @@ def image_to_base64(image_path):
         return None
 
 # @retry(wait=wait_exponential(multiplier=1, min=2, max=2), stop=stop_after_attempt(100))
-def call_gpt(original_image_path, result_image_path, edit_prompt, edit_type):
+def call_gpt(original_image_path, result_image_path, edit_prompt, edit_type, prompts):
     try:
         original_image_base64 = image_to_base64(original_image_path)
         result_image_base64 = image_to_base64(result_image_path)
@@ -34,22 +28,25 @@ def call_gpt(original_image_path, result_image_path, edit_prompt, edit_type):
         if not original_image_base64 or not result_image_base64:
             return {"error": "Image conversion failed"}
 
+        client = OpenAI(
+            api_key="api-key",
+            base_url="https://api.bltcy.cn/v1"
+        )
+
         prompt = prompts[edit_type]
         full_prompt = prompt.replace('<edit_prompt>', edit_prompt)
 
         response = client.chat.completions.create(
             model="gpt-4o",
             stream=False,
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": full_prompt},
-                        {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{original_image_base64}"}},
-                        {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{result_image_base64}"}}
-                    ]
-                }
-            ]
+            messages=[{
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": full_prompt},
+                    {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{original_image_base64}"}},
+                    {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{result_image_base64}"}}
+                ]
+            }]
         )
 
         return response
@@ -57,24 +54,24 @@ def call_gpt(original_image_path, result_image_path, edit_prompt, edit_type):
         print(f"Error in calling GPT API: {e}")
         raise
 
-def process_single_item(key, item, result_img_folder, origin_img_root):
+def process_single_item(key, item, result_img_folder, origin_img_root, prompts):
     result_img_name = f"{key}.png"
     result_img_path = os.path.join(result_img_folder, result_img_name)
     origin_img_path = os.path.join(origin_img_root, item['id'])
     edit_prompt = item['prompt']
     edit_type = item['edit_type']
 
-    response = call_gpt(origin_img_path, result_img_path, edit_prompt, edit_type)
+    response = call_gpt(origin_img_path, result_img_path, edit_prompt, edit_type, prompts)
     return key, response.choices[0].message.content
 
-def process_json(edit_json, result_img_folder, origin_img_root, num_threads):
+def process_json(edit_json, result_img_folder, origin_img_root, num_threads, prompts):
     with open(edit_json, 'r') as f:
         edit_infos = json.load(f)
 
     results = {}
     with ThreadPoolExecutor(max_workers=num_threads) as executor:
         future_to_key = {
-            executor.submit(process_single_item, key, item, result_img_folder, origin_img_root): key
+            executor.submit(process_single_item, key, item, result_img_folder, origin_img_root, prompts): key
             for key, item in edit_infos.items()
         }
 
@@ -97,9 +94,12 @@ def main():
     parser.add_argument('--edit_json', type=str, required=True, help="Path to JSON file mapping keys to metadata")
     parser.add_argument('--origin_img_root', type=str, required=True, help="Root path where original images are stored")
     parser.add_argument('--num_processes', type=int, default=32, help="Number of parallel threads")
+    parser.add_argument('--prompts_json', type=str, required=True, help="JSON file containing prompts") 
     args = parser.parse_args()
 
-    process_json(args.edit_json, args.result_img_folder, args.origin_img_root, args.num_processes)
+    prompts = load_prompts(args.prompts_json)  
+
+    process_json(args.edit_json, args.result_img_folder, args.origin_img_root, args.num_processes, prompts)
 
 if __name__ == "__main__":
     main()

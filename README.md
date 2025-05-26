@@ -229,6 +229,15 @@ Multi-turn cases of GPT-4o:
 Multi-turn cases of Gemini-2.5-flash:
 ![image](assets/multiturn-gemini.png)
 
+## Basic-Bench
+See the [basic_bench](Benchmark/Basic/basic_bench_readme.md) for details.
+
+## Understanding-Grounding-Editing(UGE)-Bench
+See the [UGE_bench](Benchmark/UGE/UGE_bench_readme.md) for details.
+
+## Multi-Turn-Bench
+See the [multiturn_bench](Benchmark/Multiturn/Multiturn_readme.md) for details.
+
 # 👨‍⚖️ ImgEdit-Judge
 
 

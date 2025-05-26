@@ -1,4 +1,40 @@
 
+# Preprocessing
+Before evaluating the model, you first need to use the provided JSON file (which contains metadata information) along with the original image files to generate the corresponding edited images by editing model. These edited images should be saved in a folder, with each image's filename prefix corresponding to the key value from the dictionary stored in the JSON file.
+
+## Example Input/Output
+
+### Input
+A JSON file containing image edit instructions (`edit_json`):
+
+```json
+{
+    "1": {"id": "000029784.jpg", "prompt": "Remove the lemon slice inside the glass, and turn the slice on the rim into an orange slice."},
+    "2": {"id": "000065904.jpg", "prompt": "Remove the person in the front passenger seat."},
+    "3": {"id": "000066341.jpg", "prompt": "Remove the small tomato in the center and keep the others."}
+}
+```
+
+
+A folder containing original images (`origin_img_root`):
+
+```folder
+├── original_images                    
+│   ├── 000029784.jpg                 
+│   ├── 000065904.jpg                 
+│   └── 000066341.jpg                 
+```
+
+### Output:
+A folder containing edited images, with filenames prefixed by the key value from the JSON file.
+
+```folder
+├── edited_images                    
+│   ├── 1.png                 
+│   ├── 2.png            
+│   └── 3.png             
+``` 
+
 # Image Editing Evaluation using GPT
 
 This project evaluates image editing processes using GPT-4o. The system processes a set of original and edited images, comparing them according to a predefined set of criteria, such as instruction adherence, image-editing quality, and detail preservation.
@@ -50,7 +86,7 @@ python evaluate_edits.py --result_img_folder <path_to_edited_images> --edit_json
 ### Example:
 
 ```bash
-python evaluate_edits.py --result_img_folder ./edited_images --edit_json ./edits.json --origin_img_root ./original_images --num_processes 4
+python evaluate_edits.py --result_img_folder ./edited_images --edit_json ./UGE_edit.json --origin_img_root ./original_images --num_processes 4
 ```
 ## Example Input/Output
 
@@ -65,8 +101,49 @@ A JSON file containing image edit instructions (`edit_json`):
 }
 ```
 
+A folder containing original images (`origin_img_root`):
+
+```folder
+├── original_images                    
+│   ├── 000029784.jpg                 
+│   ├── 000065904.jpg                 
+│   └── 000066341.jpg                 
+```
+
+
+A folder containing edited images(`result_img_folder`).
+
+```folder
+├── edited_images                    
+│   ├── 1.png                 
+│   ├── 2.png            
+│   └── 3.png             
+``` 
+
 ### Output:
-A JSON file (`result.json`) with GPT evaluation for each image:
+A JSON file (`result_json`) with GPT evaluation for each image:
+
+```json
+{
+    "1": "Brief reasoning: Instructions partially followed. Unnatural edit of people wearing shorts. Heavy alterations led to image distortion. Score: 2.",
+    "2": "Brief reasoning: Ferrari logos replaced, but logo near text unchanged; edits slightly unnatural. Score: 3 (Acceptable)",
+    "3": "Brief reasoning: The middle car's color changed, but the right car's color remains unchanged, deviating from instructions. Score: 2 (Fair)."
+}
+```
+
+
+# Calculating the score
+
+Calculate the average score for all edited images.
+
+### Example
+
+```bash
+python get_average_score.py --result_json result.json
+```
+
+### Input
+A JSON file (`result_json`) with GPT evaluation for each image:
 
 ```json
 {
@@ -74,4 +151,12 @@ A JSON file (`result.json`) with GPT evaluation for each image:
     "30": "Brief reasoning: Ferrari logos replaced, but logo near text unchanged; edits slightly unnatural. Score: 3 (Acceptable)",
     "19": "Brief reasoning: The middle car's color changed, but the right car's color remains unchanged, deviating from instructions. Score: 2 (Fair)."
 }
+```
+
+
+### Output
+A floating point number representing the average of all the scores:
+
+```
+2.667
 ```

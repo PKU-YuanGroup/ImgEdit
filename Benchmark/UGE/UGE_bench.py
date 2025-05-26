@@ -76,12 +76,10 @@ def call_gpt(original_image_path, result_image_path, edit_prompt):
 
 def process_single_item(key, item, result_img_folder, origin_img_root):
 
-    # result_img_name = f"edit_{item['id']}"
     result_img_name = f"{key}.png"
     result_img_path = os.path.join(result_img_folder, result_img_name)
     origin_img_path = os.path.join(origin_img_root, item['id'])
     edit_prompt = item['prompt']
-    # edit_type = item['edit_type']
 
     response = call_gpt(origin_img_path, result_img_path, edit_prompt)
     return key, response.choices[0].message.content
