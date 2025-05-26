@@ -40,14 +40,22 @@ We evaluate both open-source and proprietary models, as well as ImgEdit-E1.
 - [ ] Release data curation pipelines.
 - [x] Release benchmark datasets.
 
-# 💡 Overview
+# 💡 ImgEdit Dataset
+## 📣 Overview
+**Data statistic**
 ![image](assets/pie.png)
+
+**Single Turn tasks and Multi-Turn tasks**
+We comprehensively categorize single-turn image editing tasks into 10 tasks and multi-turn image editing tasks into 3 tasks. 
 ![image](assets/edit-type.jpg)
-We comprehensively categorize single-turn image editing tasks into 10 tasks and multi-turn image editing tasks into 3 tasks. We provide some cases from our dataset.
+
+We provide some cases from our dataset.
 ![image](assets/singlecase.jpeg)
+
 ![image](assets/multicase.jpeg)
 
-# 🖥️  ImgEdit Datapipeline 
+
+# 🖥️  ImgEdit Pipeline 
 ![image](assets/datapipeline.png)
 1. Data Preparation & Filter (using Laion-aes dataset, only retain samples with aesthetic score greater than 4.75, then use Qwen2.5VL-7B to generate dense caption and use GPT-4o to generate short caption.)
 2. Generate bounding box and segamentation mask (using [Yolo-world](https://github.com/AILab-CVC/YOLO-World) and [SAM2](https://github.com/facebookresearch/sam2))
@@ -55,20 +63,22 @@ We comprehensively categorize single-turn image editing tasks into 10 tasks and 
 4. Task-based editing pipelines using ComfyUI
 5. Data Quality Filter using GPT-4o
 We provide dataset after segamentation, since it maybe a good dataset to train other models(VLMs)
-### Original Data Json Format and Example
-![image](assets/seg_sample.jpg)
 
+## ⚖️  Data Format
+**Preprocess Data Json Format**
+![image](assets/seg_sample.jpg)
+See the [rle_to_mask](inpaint-workflow/imgedit/utils/mask.py) to convert string-type mask into image.
   ```python
     {
         "path": "00095/00019/000197953.jpg", # image path
         "cap": [
-            "The image depicts a couple dressed in wedding attire standing on a rocky cliff overlooking the ocean. The bride is wearing a long, white, lace gown with an open back, while the groom is dressed in a white suit with a bow tie. They are positioned apart, facing different directions, with the bride looking out to sea and the groom looking towards the bride. The background features a scenic ocean view with distant islands and a clear blue sky with some scattered clouds. The overall setting suggests a romantic, outdoor wedding scene with a natural, coastal environment. The style of the image is photorealistic, capturing the details of the attire and the landscape."
+            "The image depicts a couple dressed in wedding attire standing on a rocky cliff overlooking ..."
         ],  # dense caption provided by Qwen2.5-VL-7B
         "resolution": {
             "height": 1333,
             "width": 2000
         },  # resolution of the image
-        "aes": 6.132755279541016, # aesthetic score
+        "aes": 6.132755279541016, # aesthetic score of the image
         "border": [
             176
         ], # useless
@@ -79,14 +89,9 @@ We provide dataset after segamentation, since it maybe a good dataset to train o
                 ...
             ], # background nouns, extracted by gpt4o from dense caption
             "object": [
-                "couple",
-                "wedding attire",
                 "bride",
-                "gown",
-                "back",
-                "groom",
-                "suit",
                 "bow tie"
+                ...
             ], # object nouns, extracted by gpt4o from dense caption
             "summary": "A couple in wedding attire poses on a rocky cliff overlooking a scenic ocean, creating a romantic coastal setting." # short caption sumarrized by gpt4o from dense caption
         },
@@ -107,58 +112,22 @@ We provide dataset after segamentation, since it maybe a good dataset to train o
                 },
                 {
                     "class_name": "ocean",
-                    "bbox": [
-                        0.0,
-                        722.9654541015625,
-                        1455.8074951171875,
-                        839.5341796875
-                    ],
-                    "mask": "kf0X2]W1000000000...",
-                    "score": 0.77734375,
-                    "clip_score": 0.9553191661834717,
-                    "aes_score": 4.703125
+                    ...
                 },
                 ...
             ],
             "object": [
                 {
                     "class_name": "bride", 
-                    "bbox": [
-                        931.7371826171875,
-                        339.7152404785156,
-                        1500.1824951171875,
-                        1220.9635009765625
-                    ],
-                    "mask": "iRVV1...",
-                    "score": 0.98828125,
-                    "clip_score": 0.7853191661834717,
-                    "aes_score": 4.44296875
+                    ...
                 },
                 {
                     "class_name": "bow tie",
-                    "bbox": [
-                        538.6561279296875,
-                        620.267822265625,
-                        576.147216796875,
-                        646.4366455078125
-                    ],
-                    "mask": "kQie02aY13M2L5N3N1N2O1OO2O0O2O0O2O001N0101N10001N10001O0O2O001N2O0O2O0000O2O0O1DWgNImX10`PQj1",
-                    "score": 0.80859375,
-                    "clip_score": 0.6553191661834717,
-                    "aes_score": 4.33296875
+                    ...
                 },
                 {
                     "class_name": "bow tie",
-                    "bbox": [
-                        534.9696044921875,
-                        640.4915771484375,
-                        551.0680541992188,
-                        667.6270141601562
-                    ],
-                    "mask": "hhge0;UY18L2O1N101O001O0001O1N3M5L;CcVPk1",
-                    "score": 0.83203125,
-                    "clip_score": 0.5653191661834717,
-                    "aes_score": 4.43296875
+                    ...
                 },
             ...
             ],
@@ -168,7 +137,7 @@ We provide dataset after segamentation, since it maybe a good dataset to train o
             "ocean": 1,
             "sky": 1,
             ...
-        }, # count the same object name 
+        }, # count the same object and background name 
         "obj_count": {
             "bow tie": 2,
             "bride": 1,
@@ -176,7 +145,9 @@ We provide dataset after segamentation, since it maybe a good dataset to train o
         }
     }
   ```
-The final ImgEdit dataset are in parquet format, the input and output images can be found in huggingface repo with the same name.
+**ImgEdit Dataset Format**
+
+The final ImgEdit dataset are in parquet format, the input and output images can be found in .tar files.
 ```python
 from datasets import load_dataset
 ds = load_dataset("parquet", data_files="./remove_part5.parquet")
@@ -192,11 +163,19 @@ print(ds['train'][0])
 # {'data': [{'input_images': ['results_version_backtracking_part0/00031_00020_000209651/origin_0.png'], 'output_images': ['results_version_backtracking_part0/00031_00020_000209651/result_0.png'], 'prompt': 'add a green vest in the middle-right area of the image, covering a torso sized approximately from mid-waist to chest'}, {'input_images': ['results_version_backtracking_part0/00031_00020_000209651/origin_1.png'], 'output_images': ['results_version_backtracking_part0/00031_00020_000209651/result_1.png'], 'prompt': 'replace the green vest with a brown leather jacket'}, {'input_images': ['results_version_backtracking_part0/00031_00020_000209651/origin_2.png'], 'output_images': ['results_version_backtracking_part0/00031_00020_000209651/result_2.png'], 'prompt': 'withdraw the previous round of modifications, adjust the green vest in round1 to have a brighter shade of green and a subtle quilted texture'}]}
 ```
 
-# 🛠️ Setups for ImgEdit pipeline
+## 🧳 Huggingface Folder Structure
 
-WIP
-
-# 🧳 Huggingface Folder Structure
+**Preprocess Dataset**
+```python
+- ImgEdit_recap_mask/
+  - laion-aes/ #  tar files with filtered laion-aes image
+    - 00000.tar 
+    - ...
+  - jsons/ #  jsons with caption, bbox, and mask
+    - part0.tar
+    - ...
+```
+**ImgEdit Dataset**
 ```python
 - ImgEdit/
   - Multiturn/ #  multi turn image data
@@ -213,33 +192,44 @@ WIP
       - model-00001-of-00004.safetensors
       - ...
   - all_dataset_gpt_score.json # all postprocess score 
-
 ```
-# 🎖️ ImgEdit-Bench Results
-ImgEdit-Bench, consisting of three key components: a basic editing suite that evaluates instruction adherence, editing quality, and detail preservation across a diverse
+
+## 🛠️ Setups for ImgEdit pipeline
+
+WIP
+
+
+# 🎖️ ImgEdit-Bench
+**ImgEdit-Bench** consists of three key components: a basic editing suite that evaluates instruction adherence, editing quality, and detail preservation across a diverse
 range of tasks; an Understanding-Grounding-Editing (UGE) suite, which increases task complexity
 through challenging instructions (e.g., spatial reasoning and multi-object targets) and complex scenes
 such as multi-instance layouts or camouflaged objects; and a multi-turn editing suite, designed to
 assess content understanding, content memory, and version backtracking. 
+
 ![image](assets/radar.png)
-More cases:
+
+**More Quantitative Cases:**
 ![image](assets/maincase.png)
-Multi-turn cases of GPT-4o:
+
+**Multi-turn Cases of GPT-4o:**
 ![image](assets/multiturn-gpt4o.png)
-Multi-turn cases of Gemini-2.5-flash:
+
+**Multi-turn Cases of Gemini-2.5-flash:**
 ![image](assets/multiturn-gemini.png)
 
-## Basic-Bench
-See the [basic_bench](Benchmark/Basic/basic_bench_readme.md) for details.
+## ⚒️ Setups for ImgEdit-Bench
+**Basic-Bench**:
+See [Basic_bench](Benchmark/Basic/basic_bench_readme.md) for details.
 
-## Understanding-Grounding-Editing(UGE)-Bench
-See the [UGE_bench](Benchmark/UGE/UGE_bench_readme.md) for details.
+**Understanding-Grounding-Editing(UGE)-Bench**:
+See [UGE_bench](Benchmark/UGE/UGE_bench_readme.md) for details.
 
-## Multi-Turn-Bench
-See the [multiturn_bench](Benchmark/Multiturn/Multiturn_readme.md) for details.
+**Multi-Turn-Bench**:
+See [Multiturn_bench](Benchmark/Multiturn/Multiturn_readme.md) for details.
 
-# 👨‍⚖️ ImgEdit-Judge
+# 👍 Acknowledgement
 
+This project wouldn't be possible without the following open-sourced repositories: [Open-Sora Plan](https://github.com/PKU-YuanGroup/Open-Sora-Plan), [Grounded-SAM-2](https://github.com/IDEA-Research/Grounded-SAM-2), [improved-aesthetic-predictor](https://github.com/christophschuhmann/improved-aesthetic-predictor), [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL), [YOLO-World](https://github.com/AILab-CVC/YOLO-World), [Laion-dataset](https://github.com/LAION-AI/laion-datasets).
 
 # 📜 Citation
 If you find this work useful for your research, please cite our paper and star our git repo:

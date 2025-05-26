@@ -155,7 +155,7 @@ A JSON file (`result_json`) with GPT evaluation for each image:
 
 
 ### Output
-A floating point number representing the average of all the scores:
+A floating point number representing the average of all the scores, for example:
 
 ```
 2.667

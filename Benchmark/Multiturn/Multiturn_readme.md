@@ -1,5 +1,5 @@
 # Multi-Turn 
-Multi-round editing tasks are divided into three categories: content understanding, content memory, and version backtracking. Each task has different editing instructions. The same type of editing instructions are saved in the same json file. Each instruction consists of 2-3 sub-instructions, which are executed in sequence to generate multiple edited images. And through multi-round editing tasks, we judge by manual judgment, because GPT4O is currently unable to accurately judge multi-round editing tasks.
+Multi-round editing tasks are divided into three categories: content understanding, content memory, and version backtracking. Each task has different editing instructions. The same type of editing instructions are saved in the same json file. Each instruction consists of 2-3 sub-instructions, which are executed in sequence to generate multiple edited images. And through multi-round editing tasks, we judge by manual judgment, because GPT-4o is currently unable to accurately judge multi-round editing tasks.
 
 
 ## Input

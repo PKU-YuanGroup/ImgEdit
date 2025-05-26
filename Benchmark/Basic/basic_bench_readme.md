@@ -1,5 +1,5 @@
 
-# Preprocessing
+# Generate Images
 Before evaluating the model, you first need to use the provided JSON file (which contains metadata information) along with the original image files to generate the corresponding edited images by editing model. These edited images should be saved in a folder, with each image's filename prefix corresponding to the key value from the dictionary stored in the JSON file.
 
 ## Example Input/Output
@@ -34,19 +34,20 @@ A folder containing original images (`origin_img_root`):
 ├── original_images                    
 │   ├── animal     
 |       |── 000342021.jpg                 
-|       |── 000047206.jpg                 
+|       |── ...                 
 │   ├── style                             
-|       |── 000278574.jpg                  
+|       |── ...
+|   ...
 ```
 
 ### Output:
-A folder containing edited images, with filenames prefixed by the key value from the JSON file.
+A folder containing edited images, with filenames prefixed by the key from the JSON file.
 
 ```folder
 ├── edited_images                    
 │   ├── 1082.png                 
 │   ├── 1068.png            
-│   └── 673.png             
+│   ...            
 ``` 
 
 # Image Editing Evaluation using GPT
@@ -68,7 +69,7 @@ The following Python libraries are required for running the script:
 
 Install the required dependencies using `pip`:
 
-```bash
+```
 pip install base64 tqdm tenacity openai
 ```
 
@@ -143,9 +144,10 @@ A folder containing original images (`origin_img_root`):
 ├── original_images                    
 │   ├── animal     
 |       |── 000342021.jpg                 
-|       |── 000047206.jpg                 
+|       |── ...                
 │   ├── style                             
-|       |── 000278574.jpg                  
+|       |── 000278574.jpg
+|   ...                 
 ```
 
 
@@ -155,7 +157,7 @@ A folder containing edited images, with filenames prefixed by the key value from
 ├── edited_images                    
 │   ├── 1082.png                 
 │   ├── 1068.png            
-│   └── 673.png             
+│   ...           
 ``` 
 
 ### Output:
@@ -165,12 +167,12 @@ A JSON file (`result.json`) with GPT evaluation for each image:
 {
     "1082": "Brief reasoning: No texture change applied; shell remains textured; tortoise geometry unchanged.\nPrompt Compliance: 1\nVisual Seamlessness: 1\nPhysical & Detail Fidelity: 1",
     "1068": "Brief reasoning: No fur change; wrong subject; mainly butterfly retained with minor color alteration.\nPrompt Compliance: 1\nVisual Seamlessness: 4\nPhysical & Detail Fidelity: 4",
-    "673": "Brief reasoning: Style transfer absent, with excellent content preservation and rendering quality maintaining original image's fidelity.\nStyle Fidelity: 1\nContent Preservation: 5\nRendering Quality: 5"
+    ...
 }
 ```
 
 
-# Calculating the score
+# Calculate Score
 
 ## Step1  Calculate the average score for all edited images.
 The output of gpt is three aspects: Instruction Adherence, Image-editing Quality, and Detail Preservation scores. First, get the average score of these three scores for each editing result, and save the result in the form of a dictionary in a JSON file.
@@ -199,7 +201,7 @@ A JSON file (`average_score_json`) with average scores for each image:
 {
     "1082": 1,
     "1068": 3.3333333333333335,
-    "673": 3.6666666666666665
+    ...
 }
 ```
 
@@ -220,7 +222,7 @@ A JSON file (`average_score_json`) with average scores for each image:
 {
     "1082": 1,
     "1068": 3.3333333333333335,
-    "673": 3.6666666666666665
+    ...
 }
 ```
 
@@ -253,6 +255,7 @@ A JSON file (`typescore_json`) with average scores for each category:
 ```json
 {
     "adjust": 2,
-    "style": 3.6666666666666665,
+    "style": 3.6,
+    ...
 }
 ```
