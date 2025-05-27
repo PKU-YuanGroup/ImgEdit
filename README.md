@@ -17,7 +17,7 @@ Zhiyuan Yan<sup>1</sup>*, Bohan Hou<sup>1</sup>, Li Yuan<sup>1,2</sup>
 
 \*Equal Contribution. 
 
-[![arXiv](https://img.shields.io/badge/arXiv-2411.15738-b31b1b.svg)](https://arxiv.org/)
+[![arXiv](https://img.shields.io/badge/arXiv-2505.20275-b31b1b.svg)](http://arxiv.org/abs/2505.20275)
 [![Dataset](https://img.shields.io/badge/🤗%20Huggingface-Dataset-yellow)](https://huggingface.co/datasets/sysuyy/ImgEdit)
 [![Dataset](https://img.shields.io/badge/🤗%20Huggingface-Dataset-yellow)](https://huggingface.co/datasets/sysuyy/ImgEdit_recap_mask)
 <!-- [![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?logo=github)](https://github.com/DCDmllm/AnyEdit)
@@ -241,7 +241,12 @@ This project wouldn't be possible without the following open-sourced repositorie
 # 📜 Citation
 If you find our paper and code useful in your research, please consider giving a star ⭐ and citation 📝.
 ```bibtex
-
+@article{ye2025imgedit,
+  title={ImgEdit: A Unified Image Editing Dataset and Benchmark},
+  author={Ye, Yang and He, Xianyi and Li, Zongjian and Lin, Bin and Yuan, Shenghai and Yan, Zhiyuan and Hou, Bohan and Yuan, Li},
+  journal={arXiv preprint arXiv:2505.20275},
+  year={2025}
+}
 ```
 
 
