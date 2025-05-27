@@ -4,6 +4,8 @@ Before evaluating the model, you first need to use the provided JSON file (which
 
 ## Example Input/Output
 
+The benchmark images can be downloaded from huggingface [Benchmark.tar](https://huggingface.co/datasets/sysuyy/ImgEdit/blob/main/Benchmark.tar)
+
 ### Input
 A JSON file containing image edit instructions (`edit_json`):
 
@@ -11,7 +13,7 @@ A JSON file containing image edit instructions (`edit_json`):
 {
     "1": {"id": "000029784.jpg", "prompt": "Remove the lemon slice inside the glass, and turn the slice on the rim into an orange slice."},
     "2": {"id": "000065904.jpg", "prompt": "Remove the person in the front passenger seat."},
-    "3": {"id": "000066341.jpg", "prompt": "Remove the small tomato in the center and keep the others."}
+    ...
 }
 ```
 
@@ -22,7 +24,7 @@ A folder containing original images (`origin_img_root`):
 ├── original_images                    
 │   ├── 000029784.jpg                 
 │   ├── 000065904.jpg                 
-│   └── 000066341.jpg                 
+│   ...                
 ```
 
 ### Output:
@@ -32,7 +34,7 @@ A folder containing edited images, with filenames prefixed by the key value from
 ├── edited_images                    
 │   ├── 1.png                 
 │   ├── 2.png            
-│   └── 3.png             
+│   ...           
 ``` 
 
 # Image Editing Evaluation using GPT
@@ -97,7 +99,7 @@ A JSON file containing image edit instructions (`edit_json`):
 {
     "1": {"id": "000029784.jpg", "prompt": "Remove the lemon slice inside the glass, and turn the slice on the rim into an orange slice."},
     "2": {"id": "000065904.jpg", "prompt": "Remove the person in the front passenger seat."},
-    "3": {"id": "000066341.jpg", "prompt": "Remove the small tomato in the center and keep the others."}
+    ...
 }
 ```
 
@@ -107,7 +109,7 @@ A folder containing original images (`origin_img_root`):
 ├── original_images                    
 │   ├── 000029784.jpg                 
 │   ├── 000065904.jpg                 
-│   └── 000066341.jpg                 
+│   ...                 
 ```
 
 
@@ -117,7 +119,7 @@ A folder containing edited images(`result_img_folder`).
 ├── edited_images                    
 │   ├── 1.png                 
 │   ├── 2.png            
-│   └── 3.png             
+│   ...         
 ``` 
 
 ### Output:
@@ -127,7 +129,7 @@ A JSON file (`result_json`) with GPT evaluation for each image:
 {
     "1": "Brief reasoning: Instructions partially followed. Unnatural edit of people wearing shorts. Heavy alterations led to image distortion. Score: 2.",
     "2": "Brief reasoning: Ferrari logos replaced, but logo near text unchanged; edits slightly unnatural. Score: 3 (Acceptable)",
-    "3": "Brief reasoning: The middle car's color changed, but the right car's color remains unchanged, deviating from instructions. Score: 2 (Fair)."
+    ...
 }
 ```
 
@@ -149,7 +151,7 @@ A JSON file (`result_json`) with GPT evaluation for each image:
 {
     "31": "Brief reasoning: Instructions partially followed. Unnatural edit of people wearing shorts. Heavy alterations led to image distortion. Score: 2.",
     "30": "Brief reasoning: Ferrari logos replaced, but logo near text unchanged; edits slightly unnatural. Score: 3 (Acceptable)",
-    "19": "Brief reasoning: The middle car's color changed, but the right car's color remains unchanged, deviating from instructions. Score: 2 (Fair)."
+    ...
 }
 ```
 

@@ -30,7 +30,7 @@ def call_gpt(original_image_path, result_image_path, edit_prompt, edit_type, pro
 
         client = OpenAI(
             api_key="api-key",
-            base_url="https://api.bltcy.cn/v1"
+            base_url="url"
         )
 
         prompt = prompts[edit_type]

@@ -49,7 +49,7 @@ def call_gpt(original_image_path, result_image_path, edit_prompt):
 
         client = OpenAI(
             api_key="your api-key",
-            base_url="https://api.bltcy.cn/v1"
+            base_url="url"
         )
 
         full_prompt = prompt.replace('<edit_prompt>', edit_prompt)

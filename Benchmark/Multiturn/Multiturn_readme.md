@@ -1,8 +1,10 @@
 # Multi-Turn 
-Multi-round editing tasks are divided into three categories: content understanding, content memory, and version backtracking. Each task has different editing instructions. The same type of editing instructions are saved in the same json file. Each instruction consists of 2-3 sub-instructions, which are executed in sequence to generate multiple edited images. And through multi-round editing tasks, we judge by manual judgment, because GPT-4o is currently unable to accurately judge multi-round editing tasks.
+Multi-round editing tasks are divided into three categories: content understanding, content memory, and version backtracking. Each task has different editing instructions. The same type of editing instructions are saved in the same json file. Each instruction consists of 2-3 sub-instructions, which are executed in sequence to generate multiple edited images. And through multi-round editing tasks, we run these tests manually and judge by manual judgment.
 
 
 ## Input
+The benchmark images can be downloaded from huggingface [Benchmark.tar](https://huggingface.co/datasets/sysuyy/ImgEdit/blob/main/Benchmark.tar)
+
 A JSON file containing image edit instructions
 
 ```json
@@ -13,5 +15,8 @@ A JSON file containing image edit instructions
 
 
 ## Output
-Multi-turn cases of GPT-4o:
+**Multi-turn Cases of GPT-4o:**
 ![image](../../assets/multiturn-gpt4o.png)
+
+**Multi-turn Cases of Gemini-2.5-flash:**
+![image](../../assets/multiturn-gemini.png)

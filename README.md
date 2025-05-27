@@ -163,7 +163,7 @@ print(ds['train'][0])
 # {'data': [{'input_images': ['results_version_backtracking_part0/00031_00020_000209651/origin_0.png'], 'output_images': ['results_version_backtracking_part0/00031_00020_000209651/result_0.png'], 'prompt': 'add a green vest in the middle-right area of the image, covering a torso sized approximately from mid-waist to chest'}, {'input_images': ['results_version_backtracking_part0/00031_00020_000209651/origin_1.png'], 'output_images': ['results_version_backtracking_part0/00031_00020_000209651/result_1.png'], 'prompt': 'replace the green vest with a brown leather jacket'}, {'input_images': ['results_version_backtracking_part0/00031_00020_000209651/origin_2.png'], 'output_images': ['results_version_backtracking_part0/00031_00020_000209651/result_2.png'], 'prompt': 'withdraw the previous round of modifications, adjust the green vest in round1 to have a brighter shade of green and a subtle quilted texture'}]}
 ```
 
-## 🧳 Huggingface Folder Structure
+## 🧳 Download Dataset
 
 **Preprocess Dataset**
 ```python
@@ -192,7 +192,19 @@ print(ds['train'][0])
       - model-00001-of-00004.safetensors
       - ...
   - all_dataset_gpt_score.json # all postprocess score 
+  - Benchmark.tar # dataset for benchmark
 ```
+We release both preprocess dataset and imgedit dataset. The dataset is available at HuggingFace, or you can download it with the following command. Some samples can be found on our paper and github.
+```
+huggingface-cli download --repo-type dataset \
+sysuyy/ImgEdit \
+--local-dir ...
+
+huggingface-cli download --repo-type dataset \
+sysuyy/ImgEdit_recap_mask \
+--local-dir ...
+```
+
 
 ## 🛠️ Setups for ImgEdit pipeline
 
@@ -211,11 +223,6 @@ assess content understanding, content memory, and version backtracking.
 **More Quantitative Cases:**
 ![image](assets/maincase.png)
 
-**Multi-turn Cases of GPT-4o:**
-![image](assets/multiturn-gpt4o.png)
-
-**Multi-turn Cases of Gemini-2.5-flash:**
-![image](assets/multiturn-gemini.png)
 
 ## ⚒️ Setups for ImgEdit-Bench
 **Basic-Bench**:
@@ -225,14 +232,14 @@ See [Basic_bench](Benchmark/Basic/basic_bench_readme.md) for details.
 See [UGE_bench](Benchmark/UGE/UGE_bench_readme.md) for details.
 
 **Multi-Turn-Bench**:
-See [Multiturn_bench](Benchmark/Multiturn/Multiturn_readme.md) for details.
+See [Multiturn_bench](Benchmark/Multiturn/Multiturn_readme.md) for details and more cases.
 
 # 👍 Acknowledgement
 
 This project wouldn't be possible without the following open-sourced repositories: [Open-Sora Plan](https://github.com/PKU-YuanGroup/Open-Sora-Plan), [Grounded-SAM-2](https://github.com/IDEA-Research/Grounded-SAM-2), [improved-aesthetic-predictor](https://github.com/christophschuhmann/improved-aesthetic-predictor), [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL), [YOLO-World](https://github.com/AILab-CVC/YOLO-World), [Laion-dataset](https://github.com/LAION-AI/laion-datasets), [ComfyUI](https://github.com/comfyanonymous/ComfyUI), [Stable Diffusion](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0), and [Flux](https://github.com/black-forest-labs/flux).
 
 # 📜 Citation
-If you find this work useful for your research, please cite our paper and star our git repo:
+If you find our paper and code useful in your research, please consider giving a star ⭐ and citation 📝.
 ```bibtex
 
 ```
