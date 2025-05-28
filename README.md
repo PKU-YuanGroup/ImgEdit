@@ -1,5 +1,4 @@
 <h1 align="center" style="line-height: 50px;">
-  <!-- <img src='assert/main_figures/logo.svg' width="4%" height="auto" style="vertical-align: middle;"> -->
   ImgEdit: A Unified Image Editing Dataset and Benchmark
 </h1>
 
@@ -20,15 +19,15 @@ Zhiyuan Yan<sup>1</sup>*, Bohan Hou<sup>1</sup>, Li Yuan<sup>1,2</sup>
 [![arXiv](https://img.shields.io/badge/arXiv-2505.20275-b31b1b.svg)](http://arxiv.org/abs/2505.20275)
 [![Dataset](https://img.shields.io/badge/🤗%20Huggingface-Dataset-yellow)](https://huggingface.co/datasets/sysuyy/ImgEdit)
 [![Dataset](https://img.shields.io/badge/🤗%20Huggingface-Dataset-yellow)](https://huggingface.co/datasets/sysuyy/ImgEdit_recap_mask)
-<!-- [![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?logo=github)](https://github.com/DCDmllm/AnyEdit)
-[![GitHub](https://img.shields.io/badge/GitHub-ModelRepo-181717?logo=github)](https://github.com/weichow23/AnySD)
-[![Page](https://img.shields.io/badge/Home-Page-b3.svg)](https://dcd-anyedit.github.io/) -->
 </div>
 
 # 🌍 Introduction
 **ImgEdit** is a large-scale, high-quality image-editing dataset comprising 1.2 million carefully curated edit pairs, which contain both novel and complex single-turn edits, as well as challenging multi-turn tasks.
+
 To ensure the data quality, we employ a multi-stage pipeline that integrates a cutting-edge vision-language model, a detection model, a segmentation model, alongside task-specific in-painting procedures and strict post-processing. ImgEdit surpasses existing datasets in both task novelty and data quality.
+
 Using ImgEdit, we train **ImgEdit-E1**, an editing model using Vision Language Model to process the reference image and editing prompt, which outperforms existing open-source models on multiple tasks, highlighting the value of ImgEdit and model design.
+
 For comprehensive evaluation, we introduce **ImgEdit-Bench**, a benchmark designed to evaluate image editing performance in terms of instruction adherence, editing quality, and detail preservation.
 It includes a basic testsuite, a challenging single-turn suite, and a dedicated multi-turn suite.
 We evaluate both open-source and proprietary models, as well as ImgEdit-E1.
