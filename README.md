@@ -193,7 +193,7 @@ print(ds['train'][0])
   - all_dataset_gpt_score.json # all postprocess score 
   - Benchmark.tar # dataset for benchmark
 ```
-We release both preprocess dataset and imgedit dataset. The dataset is available at HuggingFace, or you can download it with the following command. Some samples can be found on our paper and github.
+We release both preprocess dataset and imgedit dataset. The dataset is available at HuggingFace, or you can download it with the following command. Some samples can be found on our paper and github. 
 ```
 huggingface-cli download --repo-type dataset \
 sysuyy/ImgEdit \
@@ -203,8 +203,7 @@ huggingface-cli download --repo-type dataset \
 sysuyy/ImgEdit_recap_mask \
 --local-dir ...
 ```
-
-
+tar packages are spiltted into pieces, use `cat a.tar.split.* > a.tar` to merge them.
 ## 🛠️ Setups for ImgEdit pipeline
 
 WIP
