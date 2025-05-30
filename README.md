@@ -232,7 +232,7 @@ See [UGE_bench](Benchmark/UGE/UGE_bench_readme.md) for details.
 **Multi-Turn-Bench**:
 See [Multiturn_bench](Benchmark/Multiturn/Multiturn_readme.md) for details and more cases.
 
-## Setups for ImgEdit-Judge
+## ⚒️ Setups for ImgEdit-Judge
 
 1. You should setup your environment following [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL)
 2. Download the ImgEdit_Judge checkpoint from huggingface.
