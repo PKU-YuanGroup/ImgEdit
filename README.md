@@ -232,6 +232,65 @@ See [UGE_bench](Benchmark/UGE/UGE_bench_readme.md) for details.
 **Multi-Turn-Bench**:
 See [Multiturn_bench](Benchmark/Multiturn/Multiturn_readme.md) for details and more cases.
 
+## Setups for ImgEdit-Judge
+
+1. You should setup your environment following [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL)
+2. Download the ImgEdit_Judge checkpoint from huggingface.
+3. We give a demo code as follow, you should change the prompt with the corresponding tasks in [prompts.json](Benchmark/Basic/prompts.json) to get the best performance. 
+```python
+import torch
+from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
+from qwen_vl_utils import process_vision_info
+prompt = ""
+# Load the processor
+
+# Load the model with recommended configurations
+model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+    # "/mnt/workspace/yangye/Qwen2.5-VL-7B-Instruct",
+    "ImgEdit_Judge/checkpoint/path",
+    torch_dtype=torch.bfloat16,
+    attn_implementation="flash_attention_2",
+    device_map="auto",
+    local_files_only=True,
+)
+min_pixels = 1016064  # we train our model with this settings
+max_pixels = 1354752  # we train our model with this settings
+processor = AutoProcessor.from_pretrained("ImgEdit_Judge/checkpoint/path", min_pixels=min_pixels, max_pixels=max_pixels)  
+
+messages = [
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": prompt.replace("<edit_prompt>", edit_prompt)},
+                {"type": "image", "image": original_path},
+                {"type": "image", "image": result_path},
+            ],
+        }
+    ]
+
+    # Prepare for inference
+    text = processor.apply_chat_template(
+        messages, tokenize=False, add_generation_prompt=True
+    )
+    image_inputs, video_inputs = process_vision_info(messages)
+    inputs = processor(
+        text=[text],
+        images=image_inputs,
+        videos=video_inputs,
+        padding=True,
+        return_tensors="pt",
+    )
+    inputs = inputs.to(model.device)
+
+    # Inference: Generation of the output
+    generated_ids = model.generate(**inputs, max_new_tokens=2048)
+    generated_ids_trimmed = [
+        out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+    ]
+    output_text = processor.batch_decode(
+        generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
+    )
+```
 # 👍 Acknowledgement
 
 This project wouldn't be possible without the following open-sourced repositories: [Open-Sora Plan](https://github.com/PKU-YuanGroup/Open-Sora-Plan), [Grounded-SAM-2](https://github.com/IDEA-Research/Grounded-SAM-2), [improved-aesthetic-predictor](https://github.com/christophschuhmann/improved-aesthetic-predictor), [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL), [YOLO-World](https://github.com/AILab-CVC/YOLO-World), [Laion-dataset](https://github.com/LAION-AI/laion-datasets), [ComfyUI](https://github.com/comfyanonymous/ComfyUI), [Stable Diffusion](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0), and [Flux](https://github.com/black-forest-labs/flux).
