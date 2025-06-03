@@ -21,6 +21,12 @@ Zhiyuan Yan<sup>1</sup>*, Bohan Hou<sup>1</sup>, Li Yuan<sup>1,2</sup>
 [![Dataset](https://img.shields.io/badge/🤗%20Huggingface-Dataset-yellow)](https://huggingface.co/datasets/sysuyy/ImgEdit_recap_mask)
 </div>
 
+<details open><summary>💡 We also have other video generation projects that may interest you ✨. </summary><p>
+<!--  may -->
+> [**UniWorld: High-Resolution Semantic Encoders for Unified Visual Understanding and Generation**](https://arxiv.org/abs/) <br>
+> Bin Lin, Zongjian Li etc. <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/PKU-YuanGroup/UniWorld-V1)  [![github](https://img.shields.io/github/stars/PKU-YuanGroup/Open-Sora-Plan.svg?style=social)](https://github.com/PKU-YuanGroup/UniWorld-V1) [![arXiv](https://img.shields.io/badge/Arxiv-2412.00131-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/) <br>
+
 # 🌍 Introduction
 **ImgEdit** is a large-scale, high-quality image-editing dataset comprising 1.2 million carefully curated edit pairs, which contain both novel and complex single-turn edits, as well as challenging multi-turn tasks.
 
