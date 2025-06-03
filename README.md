@@ -23,7 +23,7 @@ Zhiyuan Yan<sup>1</sup>*, Bohan Hou<sup>1</sup>, Li Yuan<sup>1,2</sup>
 
 <br>
 
-<details open><summary>💡 We also have other video generation projects that may interest you ✨. </summary><p>
+<details open><summary>💡 We also have other image edit projects that may interest you ✨. </summary><p>
 <!--  may -->
 
 > [**UniWorld: High-Resolution Semantic Encoders for Unified Visual Understanding and Generation**](https://arxiv.org/abs/) <br>
