@@ -31,7 +31,9 @@ Using ImgEdit, we train **ImgEdit-E1**, an editing model using Vision Language M
 For comprehensive evaluation, we introduce **ImgEdit-Bench**, a benchmark designed to evaluate image editing performance in terms of instruction adherence, editing quality, and detail preservation.
 It includes a basic testsuite, a challenging single-turn suite, and a dedicated multi-turn suite.
 We evaluate both open-source and proprietary models, as well as ImgEdit-E1.
+
 # 🔥 News
+- [2025.06.03] We have open-sourced **UniWorld-V1**, which inherits the powerful editing capabilities of **ImgEdit-E1**. It is trained on 700K subset of ImgEdit. For more details, please refer to https://github.com/PKU-YuanGroup/UniWorld-V1.
 - [2025.05.26] We have finished upload the ImgEdit datasets together with original dataset.
 ### TODO
 - [x] Release ImgEdit datasets.
