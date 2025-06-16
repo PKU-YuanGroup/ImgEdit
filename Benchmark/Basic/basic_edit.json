@@ -2,12 +2,12 @@
     "1082": {
         "id": "animal/000342021.jpg",
         "prompt": "Change the tortoise's shell texture to a smooth surface.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1068": {
         "id": "animal/000047206.jpg",
         "prompt": "Change the animal's fur color to a darker shade.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "673": {
         "id": "style/000278574.jpg",
@@ -171,8 +171,8 @@
     },
     "1136": {
         "id": "daily object/000276684.jpg",
-        "prompt": "Change the object\u9225\u6a9a color to a soft blue.",
-        "edit_type": "alter"
+        "prompt": "Change the object color to a soft blue.",
+        "edit_type": "adjust"
     },
     "55": {
         "id": "for_add/000060085.jpg",
@@ -227,7 +227,7 @@
     "1052": {
         "id": "human/000268923.jpg",
         "prompt": "Change the skin tone to a lighter shade.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "502": {
         "id": "transport/000210129.jpg",
@@ -256,8 +256,8 @@
     },
     "1100": {
         "id": "transport/000289941.jpg",
-        "prompt": "Change the color of the transport vehicle to red.",
-        "edit_type": "alter"
+        "prompt": "Change the color of the bicycle to red.",
+        "edit_type": "adjust"
     },
     "563": {
         "id": "animal/000035229.jpg",
@@ -277,7 +277,7 @@
     "1112": {
         "id": "architecture/000231250.jpg",
         "prompt": "Change the wall color to a soft beige.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "620": {
         "id": "daily object/000027344.jpg",
@@ -367,17 +367,17 @@
     "1104": {
         "id": "architecture/000004499.jpg",
         "prompt": "Change the building's wall color to light blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1075": {
         "id": "animal/000216869.jpg",
         "prompt": "Change the animal's fur color to a light brown shade.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1140": {
         "id": "daily object/000340873.jpg",
         "prompt": "Change the surface color of the object to a solid shade of blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "441": {
         "id": "clothes/00000024.jpg",
@@ -427,7 +427,7 @@
     "1106": {
         "id": "architecture/000050054.jpg",
         "prompt": "Change the building's facade color to light grey.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1164": {
         "id": "compose/objects/11.jpg",
@@ -447,7 +447,7 @@
     "1062": {
         "id": "human/000336112.jpg",
         "prompt": "Change the person's shirt color to blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "686": {
         "id": "style/000280642.jpg",
@@ -457,7 +457,7 @@
     "1078": {
         "id": "animal/000294276.jpg",
         "prompt": "Change the bird's blue feathers to a brighter shade of turquoise.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "481": {
         "id": "animal/000065685.jpg",
@@ -492,7 +492,7 @@
     "1081": {
         "id": "animal/000316504.jpg",
         "prompt": "Change the animal's fur color to a solid brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "483": {
         "id": "animal/000098730.jpg",
@@ -502,7 +502,7 @@
     "1050": {
         "id": "human/000094249.jpg",
         "prompt": "Change the color of the person's shirt to blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "100": {
         "id": "for_add/000276222.jpg",
@@ -511,18 +511,18 @@
     },
     "428": {
         "id": "daily object/000306869.jpg",
-        "prompt": "Extract the table and the flower vase from the image.",
+        "prompt": "Extract the flower vase from the image.",
         "edit_type": "extract"
     },
     "1132": {
         "id": "daily object/000128286.jpg",
         "prompt": "Change the surface color of the object to light blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1085": {
         "id": "transport/000045228.jpg",
         "prompt": "Change the motorcycle's body color to matte black.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "269": {
         "id": "architecture/000189825.jpg",
@@ -541,7 +541,7 @@
     },
     "507": {
         "id": "transport/000278321.jpg",
-        "prompt": "Remove the bicycle in the foreground.",
+        "prompt": "Remove the luxury boat in the foreground.",
         "edit_type": "remove"
     },
     "434": {
@@ -551,7 +551,7 @@
     },
     "533": {
         "id": "daily object/000109381.jpg",
-        "prompt": "Remove the daily object (as identified) from the image.",
+        "prompt": "Remove the white baby onesie from the image.",
         "edit_type": "remove"
     },
     "506": {
@@ -566,7 +566,7 @@
     },
     "493": {
         "id": "animal/000316504.jpg",
-        "prompt": "Remove the cat sitting on the floor.",
+        "prompt": "Remove the deer sitting on the floor.",
         "edit_type": "remove"
     },
     "408": {
@@ -577,7 +577,7 @@
     "1093": {
         "id": "transport/000264803.jpg",
         "prompt": "Change the boat's hull color to dark blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "629": {
         "id": "daily object/000278574.jpg",
@@ -617,7 +617,7 @@
     "1107": {
         "id": "architecture/000121353.jpg",
         "prompt": "Change the color of the domes to a gradient of blue shades.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "38": {
         "id": "for_add/000015573.jpg",
@@ -667,7 +667,7 @@
     "1108": {
         "id": "architecture/000186995.jpg",
         "prompt": "Change the building's exterior color to a soft beige.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "472": {
         "id": "human/000307468.jpg",
@@ -681,7 +681,7 @@
     },
     "390": {
         "id": "transport/000351716.jpg",
-        "prompt": "Extract the transport vehicles present in the image.",
+        "prompt": "Extract the trolley car present in the image.",
         "edit_type": "extract"
     },
     "222": {
@@ -736,7 +736,7 @@
     },
     "539": {
         "id": "daily object/000306869.jpg",
-        "prompt": "Remove the keyboard in the foreground.",
+        "prompt": "Remove the table and the flower vase in the foreground.",
         "edit_type": "remove"
     },
     "1157": {
@@ -772,7 +772,7 @@
     "1054": {
         "id": "human/000281608.jpg",
         "prompt": "Change the person's shirt color to blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "410": {
         "id": "architecture/000386778.jpg",
@@ -812,7 +812,7 @@
     "1044": {
         "id": "human/000005103.jpg",
         "prompt": "Change the color of the suit to a deep blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "603": {
         "id": "architecture/000121353.jpg",
@@ -832,7 +832,7 @@
     "1065": {
         "id": "animal/000020881.jpg",
         "prompt": "Change the animal's fur color to a shade of brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "384": {
         "id": "transport/000270866.jpg",
@@ -846,7 +846,7 @@
     },
     "623": {
         "id": "daily object/000077522.jpg",
-        "prompt": "Replace the tape dispenser in the image with a stapler.",
+        "prompt": "Replace the Adidas sneakers in the image with a stapler.",
         "edit_type": "replace"
     },
     "380": {
@@ -877,12 +877,12 @@
     "1053": {
         "id": "human/000270466.jpg",
         "prompt": "Change the person's shirt color to blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1135": {
         "id": "daily object/000273675.jpg",
         "prompt": "Change the frosting color to a light blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "366": {
         "id": "animal/000250140.jpg",
@@ -927,7 +927,7 @@
     "1090": {
         "id": "transport/000156391.jpg",
         "prompt": "Change the yacht's hull color to navy blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "260": {
         "id": "transport/000289941.jpg",
@@ -942,7 +942,7 @@
     "1139": {
         "id": "daily object/000306869.jpg",
         "prompt": "Change the surface texture of the object to smooth.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "600": {
         "id": "architecture/000004499.jpg",
@@ -961,8 +961,8 @@
     },
     "1133": {
         "id": "daily object/000158674.jpg",
-        "prompt": "Change the color of the object to red.",
-        "edit_type": "alter"
+        "prompt": "Change the color of the sliced steak to red.",
+        "edit_type": "adjust"
     },
     "81": {
         "id": "for_add/000145048.jpg",
@@ -976,7 +976,7 @@
     },
     "630": {
         "id": "daily object/000299747.jpg",
-        "prompt": "Replace the shoe in the image with a coffee mug.",
+        "prompt": "Replace the the yellow necktie worn in the image with a black one.",
         "edit_type": "replace"
     },
     "377": {
@@ -986,8 +986,8 @@
     },
     "1099": {
         "id": "transport/000286634.jpg",
-        "prompt": "Change the car's color to red.",
-        "edit_type": "alter"
+        "prompt": "Change the seaplane's color to red.",
+        "edit_type": "adjust"
     },
     "476": {
         "id": "animal/000000265.jpg",
@@ -1076,8 +1076,8 @@
     },
     "1127": {
         "id": "daily object/000073841.jpg",
-        "prompt": "Change the mug's color to red.",
-        "edit_type": "alter"
+        "prompt": "Change the color of footprint in the sand to red.",
+        "edit_type": "adjust"
     },
     "1030": {
         "id": "clothes/00000027.jpg",
@@ -1092,7 +1092,7 @@
     "1058": {
         "id": "human/000305698.jpg",
         "prompt": "Change the color of the dress to a soft pink.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "286": {
         "id": "daily object/000056963.jpg",
@@ -1112,11 +1112,11 @@
     "1073": {
         "id": "animal/000140400.jpg",
         "prompt": "Change the animal's fur color to a solid shade of brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "422": {
         "id": "daily object/000158674.jpg",
-        "prompt": "Extract the daily object(s) visible in the image.",
+        "prompt": "Extract the sliced steak visible in the image.",
         "edit_type": "extract"
     },
     "1148": {
@@ -1126,7 +1126,7 @@
     },
     "627": {
         "id": "daily object/000273675.jpg",
-        "prompt": "Replace the orange traffic cone in the image with a coffee mug.",
+        "prompt": "Replace the slices of cake in the image with slices of cookie.",
         "edit_type": "replace"
     },
     "39": {
@@ -1167,7 +1167,7 @@
     "1049": {
         "id": "human/000063961.jpg",
         "prompt": "Change the person's shirt color to blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "687": {
         "id": "style/000280642.jpg",
@@ -1182,16 +1182,16 @@
     "1084": {
         "id": "transport/000038819.jpg",
         "prompt": "Change the color of the vehicle to blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "426": {
         "id": "daily object/000278574.jpg",
-        "prompt": "Extract the daily objects visible in the image.",
+        "prompt": "Extract the green armchair visible in the image.",
         "edit_type": "extract"
     },
     "509": {
         "id": "transport/000289941.jpg",
-        "prompt": "Remove the transport vehicle from the image.",
+        "prompt": "Remove the bicycle from the image.",
         "edit_type": "remove"
     },
     "1034": {
@@ -1242,7 +1242,7 @@
     "1110": {
         "id": "architecture/000211771.jpg",
         "prompt": "Change the wall color to a soft beige.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "93": {
         "id": "for_add/000155856.jpg",
@@ -1296,7 +1296,7 @@
     },
     "430": {
         "id": "daily object/000363394.jpg",
-        "prompt": "Extract the coffee cup placed on the table in the image",
+        "prompt": "Extract the armchair in the image",
         "edit_type": "extract"
     },
     "704": {
@@ -1346,7 +1346,7 @@
     },
     "455": {
         "id": "clothes/00000066.jpg",
-        "prompt": "Extract the red and black jacket worn by the person in the image",
+        "prompt": "Extract the blue jacket worn by the person in the image",
         "edit_type": "extract"
     },
     "291": {
@@ -1407,7 +1407,7 @@
     "1070": {
         "id": "animal/000069528.jpg",
         "prompt": "Change the animal's fur color to a solid shade of brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "414": {
         "id": "daily object/000027344.jpg",
@@ -1422,7 +1422,7 @@
     "1138": {
         "id": "daily object/000299747.jpg",
         "prompt": "Change the surface texture of the object to a smooth metallic finish.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "259": {
         "id": "transport/000286634.jpg",
@@ -1437,12 +1437,12 @@
     "1096": {
         "id": "transport/000276156.jpg",
         "prompt": "Change the color of the vehicle to red.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1059": {
         "id": "human/000306019.jpg",
         "prompt": "Change the person's shirt color to blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1021": {
         "id": "clothes/00000000.jpg",
@@ -1452,7 +1452,7 @@
     "1114": {
         "id": "architecture/000280642.jpg",
         "prompt": "Change the wall color to a light gray.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "114": {
         "id": "for_add/000320977.jpg",
@@ -1536,8 +1536,8 @@
     },
     "1092": {
         "id": "transport/000210129.jpg",
-        "prompt": "Change the color of the vehicle to red.",
-        "edit_type": "alter"
+        "prompt": "Change the color of the vehicle to blue.",
+        "edit_type": "adjust"
     },
     "1168": {
         "id": "compose/objects/2.jpg",
@@ -1566,7 +1566,7 @@
     },
     "579": {
         "id": "animal/000370801.jpg",
-        "prompt": "Replace the large pair of shoes in the image with a cat.",
+        "prompt": "Replace the dog in the image with a cat.",
         "edit_type": "replace"
     },
     "1001": {
@@ -1596,8 +1596,8 @@
     },
     "1098": {
         "id": "transport/000278321.jpg",
-        "prompt": "Change the vehicle color to red.",
-        "edit_type": "alter"
+        "prompt": "Change the luxury boat color to red.",
+        "edit_type": "adjust"
     },
     "272": {
         "id": "architecture/000231250.jpg",
@@ -1607,7 +1607,7 @@
     "1086": {
         "id": "transport/000060711.jpg",
         "prompt": "Change the vehicle color to red.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "66": {
         "id": "for_add/000088053.jpg",
@@ -1646,8 +1646,8 @@
     },
     "1129": {
         "id": "daily object/000106052.jpg",
-        "prompt": "Change the cup color to blue.",
-        "edit_type": "alter"
+        "prompt": "Change the plastic-wrapped cookies color to blue.",
+        "edit_type": "adjust"
     },
     "237": {
         "id": "animal/000250140.jpg",
@@ -1682,7 +1682,7 @@
     "1131": {
         "id": "daily object/000117413.jpg",
         "prompt": "Change the surface texture of the object to a smooth, glossy finish.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "662": {
         "id": "style/000278574.jpg",
@@ -1737,7 +1737,7 @@
     "1115": {
         "id": "architecture/000294699.jpg",
         "prompt": "Change the wall color to a soft blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "397": {
         "id": "architecture/000186995.jpg",
@@ -1751,8 +1751,8 @@
     },
     "1141": {
         "id": "daily object/000363394.jpg",
-        "prompt": "Change the mug color to red.",
-        "edit_type": "alter"
+        "prompt": "Change the armchair to red.",
+        "edit_type": "adjust"
     },
     "402": {
         "id": "architecture/000276347.jpg",
@@ -1772,7 +1772,7 @@
     "1087": {
         "id": "transport/000071262.jpg",
         "prompt": "Change the car color to red.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "267": {
         "id": "architecture/000121353.jpg",
@@ -1847,12 +1847,12 @@
     "1071": {
         "id": "animal/000098730.jpg",
         "prompt": "Change the animal's fur color to a vibrant blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1143": {
         "id": "daily object/000392212.jpg",
-        "prompt": "Change the coffee mug color to blue.",
-        "edit_type": "alter"
+        "prompt": "Change the the candy cane to blue.",
+        "edit_type": "adjust"
     },
     "393": {
         "id": "architecture/000004499.jpg",
@@ -1861,7 +1861,7 @@
     },
     "479": {
         "id": "animal/000035229.jpg",
-        "prompt": "Remove the cat in the foreground.",
+        "prompt": "Remove the bird in the foreground.",
         "edit_type": "remove"
     },
     "689": {
@@ -1871,12 +1871,12 @@
     },
     "1128": {
         "id": "daily object/000077522.jpg",
-        "prompt": "Change the mug color to matte black.",
-        "edit_type": "alter"
+        "prompt": "Change the Adidas sneakers to matte black.",
+        "edit_type": "adjust"
     },
     "418": {
         "id": "daily object/000106052.jpg",
-        "prompt": "Extract the daily objects visible in the image, focusing on items such as clothing, bags, or any other common personal belongings.",
+        "prompt": "Extract the plastic-wrapped cookies visible in the image.",
         "edit_type": "extract"
     },
     "249": {
@@ -2006,13 +2006,13 @@
     },
     "551": {
         "id": "human/000270466.jpg",
-        "prompt": "Replace the person in the image with a sports car.",
+        "prompt": "Replace the man in the image with a woman.",
         "edit_type": "replace"
     },
     "1064": {
         "id": "animal/000000265.jpg",
         "prompt": "Change the rabbit's fur color to light brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "289": {
         "id": "daily object/000106052.jpg",
@@ -2052,12 +2052,12 @@
     "1061": {
         "id": "human/000309116.jpg",
         "prompt": "Change the person's shirt color to blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1076": {
         "id": "animal/000222070.jpg",
         "prompt": "Change the animal's fur color to a lighter shade.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1151": {
         "id": "compose/human/2.jpg",
@@ -2082,7 +2082,7 @@
     "1069": {
         "id": "animal/000065685.jpg",
         "prompt": "Change the animal's fur color to a soft shade of brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "543": {
         "id": "human/000005103.jpg",
@@ -2127,7 +2127,7 @@
     "1122": {
         "id": "architecture/000392550.jpg",
         "prompt": "Change the color of the telephone booth to blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "105": {
         "id": "for_add/000295872.jpg",
@@ -2166,7 +2166,7 @@
     },
     "604": {
         "id": "architecture/000186995.jpg",
-        "prompt": "Replace the person in the image with a modern skyscraper.",
+        "prompt": "Replace the inflatable castle structure in the image with a modern skyscraper.",
         "edit_type": "replace"
     },
     "464": {
@@ -2176,8 +2176,8 @@
     },
     "1103": {
         "id": "transport/000370777.jpg",
-        "prompt": "Change the car's color to red.",
-        "edit_type": "alter"
+        "prompt": "Change the bicycle's color to red.",
+        "edit_type": "adjust"
     },
     "403": {
         "id": "architecture/000280642.jpg",
@@ -2226,12 +2226,12 @@
     },
     "1134": {
         "id": "daily object/000240448.jpg",
-        "prompt": "Change the mug color to blue.",
-        "edit_type": "alter"
+        "prompt": "Change the wooden bunk bed to blue.",
+        "edit_type": "adjust"
     },
     "529": {
         "id": "daily object/000056963.jpg",
-        "prompt": "Remove the disposable cup on the table.",
+        "prompt": "Remove the pineapple.",
         "edit_type": "remove"
     },
     "635": {
@@ -2267,7 +2267,7 @@
     "1055": {
         "id": "human/000282756.jpg",
         "prompt": "Change the color of the jacket to a deep blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "567": {
         "id": "animal/000098730.jpg",
@@ -2281,8 +2281,8 @@
     },
     "1130": {
         "id": "daily object/000109381.jpg",
-        "prompt": "Change the surface color of the mug to red.",
-        "edit_type": "alter"
+        "prompt": "Change the surface color of the white baby onesie to red.",
+        "edit_type": "adjust"
     },
     "595": {
         "id": "transport/000286634.jpg",
@@ -2316,8 +2316,8 @@
     },
     "1101": {
         "id": "transport/000351716.jpg",
-        "prompt": "Change the car's color to red.",
-        "edit_type": "alter"
+        "prompt": "Change the trolley car's color to blue.",
+        "edit_type": "adjust"
     },
     "588": {
         "id": "transport/000210129.jpg",
@@ -2337,7 +2337,7 @@
     "1088": {
         "id": "transport/000076056.jpg",
         "prompt": "Change the color of the vehicle to red.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "663": {
         "id": "style/000278574.jpg",
@@ -2346,8 +2346,8 @@
     },
     "1095": {
         "id": "transport/000270866.jpg",
-        "prompt": "Change the color of the vehicle to red.",
-        "edit_type": "alter"
+        "prompt": "Change the color of the helicopter to red.",
+        "edit_type": "adjust"
     },
     "235": {
         "id": "animal/000216869.jpg",
@@ -2357,17 +2357,17 @@
     "1083": {
         "id": "animal/000370801.jpg",
         "prompt": "Change the dog's fur color to a soft brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1074": {
         "id": "animal/000145087.jpg",
         "prompt": "Change the sheep's wool texture to a smoother, softer appearance.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1091": {
         "id": "transport/000159802.jpg",
         "prompt": "Change the color of the motorcycle to matte black.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "76": {
         "id": "for_add/000096740.jpg",
@@ -2376,7 +2376,7 @@
     },
     "415": {
         "id": "daily object/000056963.jpg",
-        "prompt": "Extract the daily objects visible in the image.",
+        "prompt": "Extract the pineapple visible in the image.",
         "edit_type": "extract"
     },
     "530": {
@@ -2386,12 +2386,12 @@
     },
     "494": {
         "id": "animal/000342021.jpg",
-        "prompt": "Remove the animal in the foreground and blend the surrounding background elements to restore the scene\u9225\u6a9a natural appearance.",
+        "prompt": "Remove the animal in the foreground and blend the surrounding background elements to restore the scene natural appearance.",
         "edit_type": "remove"
     },
     "421": {
         "id": "daily object/000128286.jpg",
-        "prompt": "Extract the daily objects visible in the image, such as any household items, personal accessories, or tools.",
+        "prompt": "Extract the coffee mug visible in the image.",
         "edit_type": "extract"
     },
     "597": {
@@ -2427,7 +2427,7 @@
     "1067": {
         "id": "animal/000035229.jpg",
         "prompt": "Change the fur color to a light brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "364": {
         "id": "animal/000216869.jpg",
@@ -2487,7 +2487,7 @@
     "1048": {
         "id": "human/000033638.jpg",
         "prompt": "Change the priest's coat color to dark brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "333": {
         "id": "human/000005103.jpg",
@@ -2501,7 +2501,7 @@
     },
     "576": {
         "id": "animal/000308736.jpg",
-        "prompt": "Replace the robotic figure in the image with a cat.",
+        "prompt": "Replace the horse in the image with a cat.",
         "edit_type": "replace"
     },
     "116": {
@@ -2526,8 +2526,8 @@
     },
     "1102": {
         "id": "transport/000369014.jpg",
-        "prompt": "Change the vehicle's color to red.",
-        "edit_type": "alter"
+        "prompt": "Change the ski lift chair's color to red.",
+        "edit_type": "adjust"
     },
     "497": {
         "id": "transport/000071262.jpg",
@@ -2537,17 +2537,17 @@
     "1121": {
         "id": "architecture/000386778.jpg",
         "prompt": "Change the roof color to a darker shade of gray.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1118": {
         "id": "architecture/000352732.jpg",
         "prompt": "Change the color of the house's front door to navy blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1046": {
         "id": "human/000015317.jpg",
         "prompt": "Change the suit color to navy blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "301": {
         "id": "daily object/000363394.jpg",
@@ -2592,7 +2592,7 @@
     "1117": {
         "id": "architecture/000332228.jpg",
         "prompt": "Change the building's exterior color to a light beige.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "359": {
         "id": "animal/000069528.jpg",
@@ -2621,13 +2621,13 @@
     },
     "379": {
         "id": "transport/000156391.jpg",
-        "prompt": "Extract the transport vehicle(s) in the image.",
+        "prompt": "Extract the yacht in the image.",
         "edit_type": "extract"
     },
     "1113": {
         "id": "architecture/000276347.jpg",
         "prompt": "Change the building's wall color to light gray.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1172": {
         "id": "compose/objects/8.jpg",
@@ -2642,7 +2642,7 @@
     "1119": {
         "id": "architecture/000366472.jpg",
         "prompt": "Change the wall color to a light blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "296": {
         "id": "daily object/000276684.jpg",
@@ -2672,7 +2672,7 @@
     "1120": {
         "id": "architecture/000369231.jpg",
         "prompt": "Change the building's facade color to a lighter shade of blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "1146": {
         "id": "compose/human/11.jpg",
@@ -2712,7 +2712,7 @@
     "1079": {
         "id": "animal/000305887.jpg",
         "prompt": "Change the tiger's fur color to a deeper orange.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "206": {
         "id": "human/000015317.jpg",
@@ -2727,7 +2727,7 @@
     "1137": {
         "id": "daily object/000278574.jpg",
         "prompt": "Change the chair fabric color to deep blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "538": {
         "id": "daily object/000299747.jpg",
@@ -2766,7 +2766,7 @@
     },
     "591": {
         "id": "transport/000270866.jpg",
-        "prompt": "Replace the transport vehicle in the image with a bicycle.",
+        "prompt": "Replace the helicopter in the image with a bicycle.",
         "edit_type": "replace"
     },
     "664": {
@@ -2801,7 +2801,7 @@
     },
     "60": {
         "id": "for_add/000081452.jpg",
-        "prompt": "Add a modern beachside caf\u8305 building near the lifeguard tower on the right side of the image.",
+        "prompt": "Add a modern beachside caf building near the lifeguard tower on the right side of the image.",
         "edit_type": "add"
     },
     "556": {
@@ -2846,8 +2846,8 @@
     },
     "1089": {
         "id": "transport/000143869.jpg",
-        "prompt": "Change the color of the vehicle to red.",
-        "edit_type": "alter"
+        "prompt": "Change the color of the orange scooter to red.",
+        "edit_type": "adjust"
     },
     "589": {
         "id": "transport/000264803.jpg",
@@ -2892,7 +2892,7 @@
     "1063": {
         "id": "human/000352814.jpg",
         "prompt": "Change the coat color to deep navy blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "53": {
         "id": "for_add/000060085.jpg",
@@ -2901,7 +2901,7 @@
     },
     "499": {
         "id": "transport/000143869.jpg",
-        "prompt": "Remove the bus in the foreground.",
+        "prompt": "Remove the orange scooter in the foreground.",
         "edit_type": "remove"
     },
     "688": {
@@ -2947,7 +2947,7 @@
     "1109": {
         "id": "architecture/000189825.jpg",
         "prompt": "Change the building's exterior color to a shade of blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "52": {
         "id": "for_add/000060085.jpg",
@@ -2961,7 +2961,7 @@
     },
     "469": {
         "id": "human/000292447.jpg",
-        "prompt": "Remove the human child with the rainbow and cloud face paint from the image.",
+        "prompt": "Remove the rainbow and cloud face paint from the image.",
         "edit_type": "remove"
     },
     "78": {
@@ -3007,7 +3007,7 @@
     "1123": {
         "id": "architecture/000403575.jpg",
         "prompt": "Change the building facade color to a light gray.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "718": {
         "id": "style/000308736.jpg",
@@ -3106,17 +3106,17 @@
     },
     "1125": {
         "id": "daily object/000027344.jpg",
-        "prompt": "Change the mug's color to red.",
-        "edit_type": "alter"
+        "prompt": "Change the pop-up teddy bear's color to blue.",
+        "edit_type": "adjust"
     },
     "381": {
         "id": "transport/000210129.jpg",
-        "prompt": "Extract the transport vehicle in the image.",
+        "prompt": "Extract the vehicle in the image.",
         "edit_type": "extract"
     },
     "435": {
         "id": "clothes/00000006.jpg",
-        "prompt": "Extract the white shirt and dark pants worn by the person standing in the image",
+        "prompt": "Extract the person standing in the image",
         "edit_type": "extract"
     },
     "633": {
@@ -3156,7 +3156,7 @@
     },
     "385": {
         "id": "transport/000276156.jpg",
-        "prompt": "Extract the transport vehicles visible in the image.",
+        "prompt": "Extract the vehicles visible in the image.",
         "edit_type": "extract"
     },
     "239": {
@@ -3197,7 +3197,7 @@
     "1077": {
         "id": "animal/000250140.jpg",
         "prompt": "Change the animal's fur color to a solid shade of brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "63": {
         "id": "for_add/000084341.jpg",
@@ -3312,7 +3312,7 @@
     "1066": {
         "id": "animal/000023506.jpg",
         "prompt": "Change the animal's fur color to a bright shade of blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "57": {
         "id": "for_add/000081452.jpg",
@@ -3342,7 +3342,7 @@
     "1094": {
         "id": "transport/000265699.jpg",
         "prompt": "Change the vehicle's color to red.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "570": {
         "id": "animal/000145087.jpg",
@@ -3376,7 +3376,7 @@
     },
     "368": {
         "id": "animal/000305887.jpg",
-        "prompt": "Extract the animal (cat) lying on the floor in the image, including its full body and shadow, separating it from the background environment.",
+        "prompt": "Extract the animal lying on the floor in the image.",
         "edit_type": "extract"
     },
     "520": {
@@ -3387,7 +3387,7 @@
     "1124": {
         "id": "daily object/000007834.jpg",
         "prompt": "Change the hat's floral pattern to polka dots.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "522": {
         "id": "architecture/000303190.jpg",
@@ -3397,7 +3397,7 @@
     "1105": {
         "id": "architecture/000023390.jpg",
         "prompt": "Change the wood paneling color to a darker shade of brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "400": {
         "id": "architecture/000231068.jpg",
@@ -3406,8 +3406,8 @@
     },
     "1116": {
         "id": "architecture/000303190.jpg",
-        "prompt": "Change the wall color to light blue.",
-        "edit_type": "alter"
+        "prompt": "Change the shelter structure color to light blue.",
+        "edit_type": "adjust"
     },
     "242": {
         "id": "animal/000342021.jpg",
@@ -3472,7 +3472,7 @@
     "1080": {
         "id": "animal/000308736.jpg",
         "prompt": "Change the animal's fur color to a shade of blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "647": {
         "id": "style/000015317.jpg",
@@ -3487,7 +3487,7 @@
     "1097": {
         "id": "transport/000278113.jpg",
         "prompt": "Change the car color to red.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "362": {
         "id": "animal/000140400.jpg",
@@ -3566,8 +3566,8 @@
     },
     "1142": {
         "id": "daily object/000368863.jpg",
-        "prompt": "Change the color of the cup to blue.",
-        "edit_type": "alter"
+        "prompt": "Change the cleaner dragon to blue.",
+        "edit_type": "adjust"
     },
     "433": {
         "id": "clothes/00000000.jpg",
@@ -3586,13 +3586,13 @@
     },
     "363": {
         "id": "animal/000145087.jpg",
-        "prompt": "Extract the animal sitting near the wall in the image",
+        "prompt": "Extract the animal in the image",
         "edit_type": "extract"
     },
     "1111": {
         "id": "architecture/000231068.jpg",
         "prompt": "Change the wall color to light blue.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "209": {
         "id": "human/000063961.jpg",
@@ -3606,7 +3606,7 @@
     },
     "448": {
         "id": "clothes/00000045.jpg",
-        "prompt": "Extract the white shirt and dark pants worn by the person in the image",
+        "prompt": "Extract the dark pants worn by the person in the image",
         "edit_type": "extract"
     },
     "71": {
@@ -3672,7 +3672,7 @@
     "1072": {
         "id": "animal/000125904.jpg",
         "prompt": "Change the animal's fur color to a lighter shade of brown.",
-        "edit_type": "alter"
+        "edit_type": "adjust"
     },
     "528": {
         "id": "daily object/000027344.jpg",
@@ -3681,7 +3681,7 @@
     },
     "1126": {
         "id": "daily object/000056963.jpg",
-        "prompt": "Change the mug color to blue.",
-        "edit_type": "alter"
+        "prompt": "Change the pineapple to blue.",
+        "edit_type": "adjust"
     }
 }
