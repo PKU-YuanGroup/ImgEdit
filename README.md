@@ -26,9 +26,9 @@ Zhiyuan Yan<sup>1</sup>*, Bohan Hou<sup>1</sup>, Li Yuan<sup>1,2</sup>
 <details open><summary>💡 We also have other image edit projects that may interest you ✨. </summary><p>
 <!--  may -->
 
-> [**UniWorld: High-Resolution Semantic Encoders for Unified Visual Understanding and Generation**](https://arxiv.org/abs/) <br>
+> [**UniWorld-V1: High-Resolution Semantic Encoders for Unified Visual Understanding and Generation**](https://arxiv.org/abs/2506.03147) <br>
 > Bin Lin and Zongjian Li, etc. <br>
-[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/PKU-YuanGroup/UniWorld-V1)  [![github](https://img.shields.io/github/stars/PKU-YuanGroup/UniWorld-V1.svg?style=social)](https://github.com/PKU-YuanGroup/UniWorld-V1) [![arXiv](https://img.shields.io/badge/Arxiv-2412.00131-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/) <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/PKU-YuanGroup/UniWorld-V1)  [![github](https://img.shields.io/github/stars/PKU-YuanGroup/UniWorld-V1.svg?style=social)](https://github.com/PKU-YuanGroup/UniWorld-V1) [![arXiv](https://img.shields.io/badge/Arxiv-2506.03147-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2506.03147) <br>
 > </p></details>
 
 
