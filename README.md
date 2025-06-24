@@ -44,6 +44,7 @@ It includes a basic testsuite, a challenging single-turn suite, and a dedicated 
 We evaluate both open-source and proprietary models, as well as ImgEdit-E1.
 
 # 🔥 News
+- [2025.06.24] We update some results of [ImgEdit-Bench](https://github.com/PKU-YuanGroup/ImgEdit#%EF%B8%8F-imgedit-bench), including **BAGEL** and **Uniworld-V1**.
 - [2025.06.03] We have open-sourced **UniWorld-V1**, which inherits the powerful editing capabilities of **ImgEdit-E1**. It is trained on 700K subset of ImgEdit. For more details, please refer to https://github.com/PKU-YuanGroup/UniWorld-V1.
 - [2025.05.26] We have finished upload the ImgEdit datasets together with original dataset.
 ### TODO
@@ -228,7 +229,7 @@ range of tasks; an Understanding-Grounding-Editing (UGE) suite, which increases 
 through challenging instructions (e.g., spatial reasoning and multi-object targets) and complex scenes
 such as multi-instance layouts or camouflaged objects; and a multi-turn editing suite, designed to
 assess content understanding, content memory, and version backtracking. 
-
+![image](assets/results.jpg)
 ![image](assets/radar.png)
 
 **More Quantitative Cases:**
@@ -315,6 +316,12 @@ If you find our paper and code useful in your research, please consider giving a
   title={ImgEdit: A Unified Image Editing Dataset and Benchmark},
   author={Ye, Yang and He, Xianyi and Li, Zongjian and Lin, Bin and Yuan, Shenghai and Yan, Zhiyuan and Hou, Bohan and Yuan, Li},
   journal={arXiv preprint arXiv:2505.20275},
+  year={2025}
+}
+@article{lin2025uniworld,
+  title={UniWorld: High-Resolution Semantic Encoders for Unified Visual Understanding and Generation},
+  author={Lin, Bin and Li, Zongjian and Cheng, Xinhua and Niu, Yuwei and Ye, Yang and He, Xianyi and Yuan, Shenghai and Yu, Wangbo and Wang, Shaodong and Ge, Yunyang and others},
+  journal={arXiv preprint arXiv:2506.03147},
   year={2025}
 }
 ```
