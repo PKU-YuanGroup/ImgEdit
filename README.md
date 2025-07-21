@@ -44,7 +44,7 @@ It includes a basic testsuite, a challenging single-turn suite, and a dedicated 
 We evaluate both open-source and proprietary models, as well as ImgEdit-E1.
 
 # 🔥 News
-- [2025.07.21] We update our leaderboard [here](#jump), add BAGEL, Flux-Kontext-dev and Ovis-U1 on ImgEditBench.
+- [2025.07.21] We update our leaderboard [here](#jump), add ICEdit, BAGEL, Flux-Kontext-dev and Ovis-U1 on ImgEditBench.
 - [2025.06.24] We update some results of [ImgEdit-Bench](https://github.com/PKU-YuanGroup/ImgEdit#%EF%B8%8F-imgedit-bench), including **BAGEL** and **Uniworld-V1**.
 - [2025.06.03] We have open-sourced **UniWorld-V1**, which inherits the powerful editing capabilities of **ImgEdit-E1**. It is trained on 700K subset of ImgEdit. For more details, please refer to https://github.com/PKU-YuanGroup/UniWorld-V1.
 - [2025.05.26] We have finished upload the ImgEdit datasets together with original dataset.
