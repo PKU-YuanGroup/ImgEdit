@@ -315,7 +315,7 @@ This project wouldn't be possible without the following open-sourced repositorie
 If you find our paper and code useful in your research, please consider giving a star ⭐ and citation 📝.
 ```bibtex
 @article{ye2025imgedit,
-  title={ImgEdit: A Unified Image Editing Dataset and Benchmark},
+  title={Imgedit: A unified image editing dataset and benchmark},
   author={Ye, Yang and He, Xianyi and Li, Zongjian and Lin, Bin and Yuan, Shenghai and Yan, Zhiyuan and Hou, Bohan and Yuan, Li},
   journal={arXiv preprint arXiv:2505.20275},
   year={2025}
